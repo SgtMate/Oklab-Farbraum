@@ -212,10 +212,73 @@ der Stevens Effekt, welcher sich auf den Kontrast auswirkt und der Helmholtz-Koh
 All diese Effekte sorgen dafür das die Farbwahrnehmung des Menschen schwer zu beschreiben ist und Modelle, die dies Versuchen sehr komplex werden können~\cite{Color_appearance_model_2023}.
 
 \subsection{Farbräume}
+Ein Farbsystem stellt das Grundprinzip einer Farbmischung dar, 
+beispielsweise durch das Mischen der Lichtfarben Rot, Grün und Blau oder durch das Mischen von Farbpigmenten.
+Farbmodelle werden aus einem solchen Farbsystem abgeleitet und ordnen Farben einen eindeutigen Wert (Farborte) zu.
+Farbmodelle sind häufig dreidimensional, damit sie einfach visualisiert werden können.
+Ein Farbraum wiederum beschreibt alle Farben eines Farbmodells, die durch farbgebende Methoden tatsächlich ausgegeben werden können~\cite{Farbraum_2023}.
+Ein Beispiel ist der sRGB Farbraum, welcher ursprünglich für CRTs entwickelt wurde, aber auch heute noch von vielen Displays verwendet wird~\cite{sRGB-Farbraum_2019}.
+Die darstellbaren Farben bilden innerhalb des Farbmodells einen Körper, der als Gamut bezeichnet wird.
 
+\subsection{Farbeigenschaften} 
+Abgesehen von den von RGB bekannten Farbdimensionen, welche den Anteil der Grundfarben Rot, Grün und Blau beschreiben, 
+gibt es noch weitere mögliche Farbdimensionen. Diese Dimensionen nehmen Bezug auf die Farbeigenschaften, nach denen die Farben beschrieben werden können.
+Diese Farbeigenschaften stehen im Bezug zueinander und beeinflussen sich teilweise gegenseitig~\ref{fig:ExColordimension}.
 
-\subsection{Begriffsdefinitionen im Bereich der Farbräume}
+\paragraph{Farbton}
+Der Farbton (eng. hue) ist eine Eigenschaft der visuellen Wahrnehmung, in welcher eine Fläche 
+ähnlich zu einer der Farben rot, gelb, grün oder blau erscheint oder eine Kombination von 
+aneinanderliegenden Paaren dieser Farben in einem geschlossenen Farbring ähnelt (vgl. Grafik \ref{fig:Hue})~\cite{Darktable_2023}. 
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.5\textwidth]{Grafiken/Farbring.png}
+  \caption{Beispiel eines Farbrings. Quelle: \cite{Hue_2023}}
+  \label{fig:Hue}
+\end{figure}
+
+\paragraph{Leuchtkraft (und Brillanz)}
+Leuchtkraft (eng. brightness) ist eine Eigenschaft der visuellen Wahrnehmung, 
+nach der eine Fläche mehr oder weniger Licht zu emmitieren oder zu reflektieren scheint. 
+Die Brillanz (eng. brilliance) ist die Leuchtkraft einer Fläche relativ betrachtet zu ihrer Umgebung.
+Leuchtkraft ist ein absoluter Wert, während Brillanz in Relation zur Umgebung steht.
+Da bei der Bildverarbeitung eine Erhöhung der Leuchtkraft auch die Brillanz erhöht, 
+werden diese Begriffe häufig synonym verwendet~\cite{Darktable_2023}.
+
+\paragraph{Helligkeit}
+Die Helligkeit (eng. lightness) einer Fläche beschreibt die Leuchtkraft der Fläche 
+relativ zu einer ähnlich beleuteten weißen oder stark reflektierenden Fläche~\cite{Darktable_2023}.
+
+\paragraph{Chroma (Buntheit)}
+Chroma beschreibt die Farbigkeit einer Fläche, beurteilt im verhältnis zur Leuchtkraft 
+einer ähnlich beleuchteten grauen oder weißen Fläche~\cite{Darktable_2023}. 
+
+\paragraph{Sättigung}
+Die Sättigung (eng. saturation) ist die Farbigkeit einer Fläche im verhältnis zu ihrer Leuchtkraft~\cite{Darktable_2023}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{Grafiken/KoordinatenFarbeigenschaften.png}
+  \caption{Beispiel für den Zusammenhang zwischen den Farbeigenschaften. Quelle: \cite{Darktable_2023}
+  \label{fig:ExColordimension}
+\end{figure}
+
 \subsection{Unterschieliche Farbräume}
+Farben können in vielen unterschiedlichen Farbräumen dargestellt werden. 
+Dabei braucht jede Farbe unabhängig vom Farbraum mindestens drei Werte, um beschrieben werden zu können.
+Zum einen eine Metrik für Helligkeit oder Leuchtkraft und zum anderen zwei Metriken für die Chromazität 
+(nicht zu verwechseln mit Chroma). 
+Diese zwei Metriken können zum Beispiel Farbton und Buntheit/Chroma oder komplementäre Farbkoordinaten sein~\cite{Darktable_2023}.
+Im Folgenden werden einige Farbräume kurz vorgestellt. Diese Farbräume werden im weiteren Verlauf des Artikels nochmal aufgegriffen.
+
+\paragraph{sRGB}
+\paragraph{HSV}
+\paragraph{CIE 1931 XYZ}
+\paragraph{CIELAB}
+\paragraph{JzAzBz}
+\paragraph{CAM16-UCS}
+\paragraph{IPT}
+
 %hier eine auswahl wichtiger farbräume kurz abhandeln, am besten die farbräume die thematisiert werden
 
 \section{Der Oklab Farbraum}
