@@ -176,7 +176,7 @@ Die Encyclopedia Britannica definiert Farbe sinngemäß als Eigenschaft eines Ob
 Helligkeit und Sättigung beschrieben werden kann. In der Physik werden Farben mit Elektromagnetischer Strahlung in einem
 bestimmten Bereich des elektromagnetischen Spektrums beschrieben, der für das menschliche Auge sichtbar ist~\cite{Nassau_2023}.
 Gerade hier liegt ein Problem vor, da Farben sowohl Phasikalisch erklärt werden können, 
-aber auch Teil der Menschlichen wahrnehmeung sind. Und diese beiden Sichtweisen sind nicht immer deckungsgleich.
+aber auch Teil der Menschlichen wahrnehmeung sind.
 
 \paragraph{Farbwahrnehmung durch das menschliche Auge}
 Die Farbwahrnehmung des Menschen besteht aus mehreren Schritten, 
@@ -271,15 +271,70 @@ Zum einen eine Metrik für Helligkeit oder Leuchtkraft und zum anderen zwei Metr
 Diese zwei Metriken können zum Beispiel Farbton und Buntheit/Chroma oder komplementäre Farbkoordinaten sein~\cite{Darktable_2023}.
 Im Folgenden werden einige Farbräume kurz vorgestellt. Diese Farbräume werden im weiteren Verlauf des Artikels nochmal aufgegriffen.
 
-\paragraph{sRGB}
-\paragraph{HSV}
-\paragraph{CIE 1931 XYZ}
-\paragraph{CIELAB}
-\paragraph{JzAzBz}
-\paragraph{CAM16-UCS}
-\paragraph{IPT}
+\paragraph{HSV und HSL}
+HSV steht für Hue, Saturation und Value und HSL für Hue, Saturation und Lightness.
+Beide Farbräume sind alternative Darstellungen des RGB Farbraums. 
+HSL und HSV können beide zylindrische Farbkörper (Abbildung \ref{fig:HSV_HSL}) dargestellt werden, 
+wobei hue den Winkel und Saturation den Radius definieren.
+Die Höhe des Zylinders ist der Wert, der die Helligkeit als Lightness oder Value beschreibt.
+HSV oder HSL werden in Endnutzeranwendungen häufig für Color Picker verwendet ~\cite{HSL_and_HSV_2023}.
 
-%hier eine auswahl wichtiger farbräume kurz abhandeln, am besten die farbräume die thematisiert werden
+\begin{figure}
+  \centering
+  \includegraphics[width=0.5\textwidth]{Grafiken/HSV_Zylinder.png}
+  \includegraphics[width=0.5\textwidth]{Grafiken/HSL_Zylinder.png}
+  \caption{Beispiel von Farbkörpern für HSV links und HSL rechts. Quelle: ~\cite{HSL_and_HSV_2023}}
+  \label{fig:HSV_HSL}
+\end{figure}
+
+\paragraph{CIE 1931 XYZ}
+Die CIE-Farbräume von 1931 sind die ersten definierten quantitativen Verbindungen zwischen den Verteilungen 
+der Wellenlängen im elektromagnetischen sichtbaren Spektrum und den physiologisch wahrgenommenen Farben im menschlichen Farbsehen. 
+Bei CIE XYZ werden die drei Farbkoordinaten X, Y und Z verwendet, um die Farbe zu beschreiben.
+Dabei ist Y die Lumineszenz, Z ist ähnlich zu Blau im RGB Farbraum und X ist eine Mischung der drei CIE RGB Kurven.
+Vorteil ist hier, dass bei einem konstanten Y Wert die XZ Fläche alle Farben dieser Lumineszenz enthält~\cite{CIE_1931_color_space_2023}.
+
+\paragraph{CIELAB}
+Der CIELAB Farbraum wurde 1976 von der CIE entwickelt.
+CIELAB hat drei dinemsionen und erstreckt sich über den gesamten Gamut des menschlichen Farbsehens (siehe Grafik \ref{fig:CIELAB}).
+Die drei Farbkoordinaten orientieren sich ebenfalls an der menschlichen Wahrnehmung, 
+wo Rot und Grün, sowie Blau und Gelb als komplementäre Farben wahrgenommen werden.
+Um dies aufzugreifen werden die Farbkoordinaten L, a und b verwendet.
+Die L-Achse ist die Helligkeit und definiert 0 als Schwarz und 100 als Weiß.
+Die a-Achse ist eine Relative Achse für die Farbtonkomplementarität von Rot und Grün.
+Negative Werte gehen in Richtung Grün, positive Werte in Richtung Rot.
+Die b-Achse ist eine Relative Achse für die Farbtonkomplementarität von Blau und Gelb.
+Negative Werte gehen in Richtung Blau, positive Werte in Richtung Gelb.
+CIELAB wird immer in relation zu einem Referenzweiß definiert, 
+wofür CIE die Nutzung von CIE Standard illuminant D65 empfiehlt ~\cite{CIELAB_color_space_2023}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.3\textwidth]{Grafiken/CIELAB1.png}
+  \includegraphics[width=0.3\textwidth]{Grafiken/CIELAB2.png}
+  \includegraphics[width=0.3\textwidth]{Grafiken/CIELAB3.png}
+  \caption{a*b* Farbebene des CIELAB Farbraumes bei unterschiedlichen L* Werten. Quelle: ~\cite{CIELAB_color_space_2023}}
+  \label{fig:CIELAB}
+\end{figure}
+
+\paragraph{CAM16-UCS}
+In der Farbmetrik ist der OSA-UCS (Optical Society of America Uniform Color Space) ein Farbraum, 
+der erstmals 1947 veröffentlicht und vom Committee on Uniform Color Scales der Optical Society of America entwickelt wurde.
+Der Ausschuss beschloss, dass eine neue Form verwendet werden muss, 
+um einheitliche Farbunterschiede in jeder Richtung genau darstellen zu können.
+Die drei dimensionen des Farbraumes sind sehr ähnlich zu CIELAB.
+Die L-Achse ist die Helligkeit, die j-Achse ist die Farbtonkomplementarität von Blau und Gelb, 
+wobei positive Werte gelber sind und negative Werte blauer sind.
+Die g-Achse ist die Farbtonkomplementarität von Rot und Grün, 
+wobei positive Werte grüner sind und negative Werte sind pinker ~\cite{OSA-UCS_2023}.
+
+\paragraph{IPT}
+Der IPT Farbraum ist ein dreidimensionaler Farbraum.
+I steht für die Intensität und P und T ähneln a* und b* von CLAB. 
+P beschreibt die Rot-Grün Dimension und T beschreibt die Blau-Gelb Dimension.
+Die Vorteile von IPT sind, dass es eine bessere Repräsentation von hue 
+in Anlehnung an die menschliche Wahrnehmung bietet. 
+Außerdem ist IPT sehr simpel Konzipiert und lässt sich sehr einfach aus dem CIEXYZ Farbraum berechnen ~\cite{Ebner_1998}.
 
 \section{Der Oklab Farbraum}
 \subsection{Das Problem mit herkömmlichen Farbräumen}
