@@ -170,15 +170,63 @@
 Dies ist ein Beispiel für ein Abstract \cite{Mustermann:2023}.
 \end{abstract}
 
-\section{Perceptual Uniform Color Spaces}
+\section{Farben und Farbräume}
+Was ist Farbe? Das ist eine Frage die sehr einfach zu Beantworten scheint, da fast jeder Farben sehen kann. 
+Die Encyclopedia Britannica definiert Farbe sinngemäß als Eigenschaft eines Objektes, die durch dessen Farbton, 
+Helligkeit und Sättigung beschrieben werden kann. In der Physik werden Farben mit Elektromagnetischer Strahlung in einem
+bestimmten Bereich des elektromagnetischen Spektrums beschrieben, der für das menschliche Auge sichtbar ist~\cite{Nassau_2023}.
+Gerade hier liegt ein Problem vor, da Farben sowohl Phasikalisch erklärt werden können, 
+aber auch Teil der Menschlichen wahrnehmeung sind. Und diese beiden Sichtweisen sind nicht immer deckungsgleich.
+
+\paragraph{Farbwahrnehmung durch das menschliche Auge}
+Die Farbwahrnehmung des Menschen besteht aus mehreren Schritten, 
+welche von dem Einfallen der Lichtstrahlen in das Auge bis zur Interpretation der Farbe durch das Gehirn reichen.
+Im Auge fällt das Licht auf die Netzhaut, wo sich Zapfen- und Stäbchenzellen befinden, 
+welche Photorezeptoren sind, die das Licht in Signale für das Hirn umwandeln.
+Für die Farbwahrnehmung sind die Zapfen zuständig, von denen es drei Arten gibt, welche auf unterschieliche Wellenlängen reagieren.
+S-Zapfen reagieren auf Wellenlängen im blauen Bereich des sichtbaren Spetrums (ca. 420nm), 
+M-Zapfen auf Wellenlängen im grünen Bereich (ca. 530nm) und L-Zapfen auf Wellenlängen im gelb-grünen Bereich (ca. 560nm).
+Auch wenn der L-Zapfen auf Licht im gelb-grünen Bereich am stärksten reagiert, 
+ist er am wichtigsten für die Wahrnehmung von Rot und wird daher auch als Rotrezeptor bezeichnet~\cite{Zapfen_Auge_2023}.
+Die Farbwahrnehmung des Menschen entsteht durch das zusammenspiel der drei Zapfen, 
+die, wie in Grafik~\ref{fig:LMS} zu erkennen, durch die Wellenlängen unterschiedlich stark angeregt werden. 
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.5\textwidth]{Grafiken/LMS.png}
+  \caption{Normalisierte Empfindlichkeitsspektren menschlicher Zapfenzellen. X Achse: Wellenlänge in nm, Y Achse: Empfindlichkeit, anteilig. Quelle: \cite{LMS_color_space_2023}}
+  \label{fig:LMS}
+\end{figure}
+
+\paragraph{Farbinterpretation durch das Gehirn}
+Die Signale der Zapfen werden im Hirn verarbeitet und interpretiert. 
+Dabei werden die Farben durch den Mensch in Form unterschiedlicher Farbeigenschaften wahrgenommen.
+Zu diesen Farbeigenschaften zählen der Farbton, die Leuchtkraft, die Helligkeit, das Chroma und die Sättigung.
+Die Bedeutung dieser Begriffe wird im später Verlaufe des Artikels noch näher beleuchtet.
+Wichtig ist hier, dass die Wahrnehmung dieser Eigenschaften durch viele psychologische Phenomene beeinflusst wird.
+Die chromatische Anpassung beschreibt zum Beispiel die Fähigkeit der menschlichen Farbwahrnehmung, 
+bei der Betrachtung eines reflektierenden Objekts vom Weißpunkt der beleuchtenden Lichtquelle zu abstrahieren. 
+Für das menschliche Auge sieht ein weißes Blatt Papier weiß aus, egal ob die Beleuchtung bläulich oder gelblich ist.
+Weitere solcher effekte sind der Bezold-Brücke Effekt und der Abney Effekt, welche sich auf die wahrnehmeung des Farbtons auswirken,
+der Stevens Effekt, welcher sich auf den Kontrast auswirkt und der Helmholtz-Kohlrausch Effekt, der sich auf die Leuchtkraft auswirkt.
+All diese Effekte sorgen dafür das die Farbwahrnehmung des Menschen schwer zu beschreiben ist und Modelle, die dies Versuchen sehr komplex werden können~\cite{Color_appearance_model_2023}.
+
 \subsection{Farbräume}
-% Was sind Farbräume und wie werden sie definiert?
-\subsubsection{Perceptual Uniformity}
-% Was ist ein perceptual linearer Farbraum?
-\section{OKLAB}
-% Was ist OKLAB?
-\subsection{Helmholtz-Kohlrausch Effekt}
-% Was ist der Helmholtz-Kohlrausch Effekt?
+
+
+\subsection{Begriffsdefinitionen im Bereich der Farbräume}
+\subsection{Unterschieliche Farbräume}
+%hier eine auswahl wichtiger farbräume kurz abhandeln, am besten die farbräume die thematisiert werden
+
+\section{Der Oklab Farbraum}
+\subsection{Das Problem mit herkömmlichen Farbräumen}
+\subsection{Motivation für Oklab}
+\paragraph{Helmholtz-Kohlrausch Effekt}
+\subsection{Herleitung von Oklab}
+\subsection{Wie gut ist Oklab?}
+\subsection{Bessere Sättigungskorrektur mittels Oklab}
+% Von dem anderen Artikel
+\subsection{Oklab in der Praxis}
 
 % Bibliography
 \printbibliography
