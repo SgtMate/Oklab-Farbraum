@@ -343,7 +343,7 @@ das stilisieren und bearbeiten von Bildern, digitales Malen und das Erstellen vo
 Um dies zu ermöglichen können drei unterschiedliche Vorgehensweisen verwendet werden ~\cite{Ottosson_2020}.
 \begin{itemize}
   \item \textbf{Nacharmen des Verhaltens von echtem Licht und Materialien.} Beispielsweise das hinzufügen von Lens Blur, das Hinzufügen von realistischem Nebel oder Raytracing.
-  \item \textbf{Nacharmen der menschlichen Farbwahrnehmung,} mit dem Ziel eine intuitive und nachvollziehbare Farbmanipulation zu ermöglichen. Zum Beispiel für das Anpassen der des Chroma ohne die Farbe oder Helligkeit zu verändern.
+  \item \textbf{Nacharmen der menschlichen Farbwahrnehmung,} mit dem Ziel eine intuitive und nachvollziehbare Farbmanipulation zu ermöglichen. Zum Beispiel für das Anpassen des Chroma ohne die Farbe oder Helligkeit zu verändern.
   \item \textbf{Stilisierte Operationen ohne Realitätsbezug.} 
 \end{itemize}
 
@@ -365,11 +365,11 @@ diese sollten das Verhalten an die menschliche Wahrnehmung oder das physikalisch
 Dennoch wurde der zugrundeliegende Fehler eines nicht zweckdienlichen Farbraumsystems nicht behoben ~\cite{Ottosson_2020}.
 
 Um die Probleme mit der Bildbearbeitung in nicht geeigneten Farbräumen zu visualisieren folgen nun ein paar Beispiele. 
-In diesen Beispielen werden drei verschiedene Farbverläufe dargestellt, 
+In diesen Beispielen wird der gleiche Farbverlauf mit der drei unterschiedlichen Farbräumen erzeugt, 
 der erste basiert auf einem Farbraum der an die menschliche Wahrnehmung angepasst ist, 
 der zweite ist ein linearer Farbraum und veranschaulicht gut die physikalische Mischung von Licht, 
 der dritte ist ein Farbverlauf in sRGB.
-Hier können nun einige unterschiede zwischen den Farbverläufen beobachtet werden.
+Hier können nun einige unterschiede zwischen den Farbräumen beobachtet werden.
 \begin{itemize}
   \item Weder sRGB noch der lineare Farbraum sind in der Lage Farben mit Weiß zu mischen, ohne dass der eindruck eines konstanten Hue aufrechterhalten wird. Besonders gut erkennbar ist dies bei dem blauen Farbverlauf in Grafik \ref{fig:vergleich_white}.
   \item sRGB dunkelt Farben stark ab, wenn unterschiedliche Farben mit hoher Sättigung gemischt werden. Dies ist besonders gut bei dem Farbverlauf von Grün zu Magenta in Grafik \ref{fig:vergleich_zweifarbig} zu erkennen.
@@ -390,8 +390,8 @@ Daher ist sRGB nicht für die Farbmanipulation von Bildern geeignet ~\cite{Ottos
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.49\textwidth]{Grafiken/Farbverlauf/blueyellow.png}
-  \includegraphics[width=0.49\textwidth]{Grafiken/Farbverlauf/greenmagenta.png}
+  \includegraphics[width=0.29\textwidth]{Grafiken/Farbverlauf/blueyellow.png}
+  \includegraphics[width=0.29\textwidth]{Grafiken/Farbverlauf/greenmagenta.png}
   \caption{Zwei Farbverläufe, links von Blau nach Gelb, rechts von Grün nach Magenta. Quelle: ~\cite{Ottosson_2020}}
   \label{fig:vergleich_zweifarbig}
 \end{figure}
@@ -410,6 +410,7 @@ muss ein neuer Farbraum entwickelt werden, der diese Aufgabe erfüllt.
 % Von dem anderen Artikel
 \subsection{Oklab in der Praxis}
 
+\newpage
 % Bibliography
 \printbibliography
 
