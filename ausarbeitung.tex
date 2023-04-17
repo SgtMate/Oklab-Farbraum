@@ -297,7 +297,8 @@ Vorteil ist hier, dass bei einem konstanten Y Wert die XZ Fläche alle Farben di
 Der CIELAB Farbraum wurde 1976 von der CIE entwickelt.
 CIELAB hat drei dinemsionen und erstreckt sich über den gesamten Gamut des menschlichen Farbsehens (siehe Grafik \ref{fig:CIELAB}).
 Die drei Farbkoordinaten orientieren sich ebenfalls an der menschlichen Wahrnehmung, 
-wo Rot und Grün, sowie Blau und Gelb als komplementäre Farben wahrgenommen werden.
+wo Rot und Grün, Blau und Gelb, sowie Schwarz und Weiß als Gegenfarben wahrgenommen werden.
+Dies bedeutet, dass die Farben sich ausschließen und es zum Beispiel kein rötliches Grün gibt ~\cite{Becker-Carus_Wendt_2017}.
 Um dies aufzugreifen werden die Farbkoordinaten L, a und b verwendet.
 Die L-Achse ist die Helligkeit und definiert 0 als Schwarz und 100 als Weiß.
 Die a-Achse ist eine Relative Achse für die Farbtonkomplementarität von Rot und Grün.
@@ -410,9 +411,20 @@ Der Name \glqq Oklab Color Space\grqq~ steht für \emph{OK Lab Color Space} und 
 dass der Farbraum Ok also gut genug ist und es sich dabei um einen Lab Farbraum handelt.
 
 \paragraph{Ziele von Oklab}
-%hier weiter
+Oklab soll ein wahrnehmungsbasierter Farbraum sein, der sich gut für die Bildbearbeitung eignet.
+Björn Ottosson hat auf Basis seiner Erfarungen folgende Ziele für Oklab definiert ~\cite{Oklab_2020}:
+\begin{enumerate}
+  \item Der Farbraum soll wie CIELAB auf der Gegenfarbentheorie basieren.
+  \item Der Farbraum soll Helligkeit, Chroma und Farbton gut vorhersagen. Die Werte sollen als orthogonal wargenommen werden, sodass sie unabhängig voneinander manipuliert werden können.
+  \item Das Mischen zweier Farben soll in einem möglichst gleichmäßigen Übergang resultieren. Die Übergangsfarben sollen sollen als mittel zwischen den beiden Farben wahrgenommen werden. 
+  \item Der Farbraum soll den D65 Standardweißpunkt verwenden. Dieser wird von den meisten Farbräumen verwendet.
+  \item Der Farbraum soll sich numerisch gut verhalten. Die bedeutet, dass er einfach zu berechnen und numerisch stabil ist.
+  \item Der Farbraum soll gut ausgeleuchtete Sichtverhältnisse annehmen, da die Unterstützung für unterschiedliche Sichtverhältnisse und Beleuchtungen unpraktisch und schwer umzusetzen ist.
+  \item Wenn die Belichtung von Farben geändert wird, sollen die Koordination nur mit einem Faktor skaliert werden. Es wird angenommen, dass die Farben bei normalen Sichtverhältnissen und mit an die Lumineszenz angepassten Augen betrachtet werden.
+\end{enumerate}
 
 \paragraph{Definition von Oklab}
+Das Resultat der zuvor genannten Ziele ist folgende Definition von Oklab.
 Eine Farbe in Onlab kann durch drei Werte beschrieben werden, die denen von CIELAB ähneln, 
 aber besser auf die menschliche Wahrnehmung abgestimmt sind.
 Diese drei Werte sind L, a und b. 
