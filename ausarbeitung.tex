@@ -343,7 +343,7 @@ das stilisieren und bearbeiten von Bildern, digitales Malen und das Erstellen vo
 Um dies zu ermöglichen können drei unterschiedliche Vorgehensweisen verwendet werden ~\cite{Ottosson_2020}.
 \begin{itemize}
   \item \textbf{Nacharmen des Verhaltens von echtem Licht und Materialien.} Beispielsweise das hinzufügen von Lens Blur, das Hinzufügen von realistischem Nebel oder Raytracing.
-  \item \textbf{Nacharmen der menschlichen Farbwahrnehmung,} mit dem Ziel eine intuitive und nachvollziehbare Farbmanipulation zu ermöglichen. Zum Beispiel für das Anpassen des Chroma ohne die Farbe oder Helligkeit zu verändern.
+  \item \textbf{Nacharmen der menschlichen Farbwahrnehmung,} mit dem Ziel eine intuitive und nachvollziehbare Farbmanipulation zu ermöglichen. Zum Beispiel für das Anpassen des Chroma ohne die Farbe oder Helligkeit zu verändern, das erstellen einheitlich aussehender Farbverläufe oder das monocromatisieren von Bildern ohne deren empfundene Helligkeit zu verändern ~\cite{Oklab_2020}.
   \item \textbf{Stilisierte Operationen ohne Realitätsbezug.} 
 \end{itemize}
 
@@ -396,19 +396,45 @@ Daher ist sRGB nicht für die Farbmanipulation von Bildern geeignet ~\cite{Ottos
   \label{fig:vergleich_zweifarbig}
 \end{figure}
 
-\subsection{Motivation für Oklab}
+\subsection{Was ist Oklab?}
+
+\paragraph{Motivation für Oklab}
 Da nun klar ist, dass die häufig verwendeten Farbräume nicht für die Farbmanipulation geeignet sind, 
 muss ein neuer Farbraum entwickelt werden, der diese Aufgabe erfüllt.
-%Ziele oklab
+Es gibt bereits einige Farbräume, die sich auf die Wahrnehmung von Farben konzentrieren, 
+aber alle haben signifikante Nachteile bei der Nutzung für die Bildbearbeitung.
+Oklab ist ein neuer wahrnehmungsbasierter Farbraum, der 2020 von Björn Ottosson entwickelt wurde und 
+dessen Ziel es ist einfach zu nutzen zu sein und dennoch eine gute Verhersage, 
+der  Wahrnehmung von Helligkeit, Chroma und Farbton zu liefern ~\cite{Oklab_2020}.
+Der Name \glqq Oklab Color Space\grqq~ steht für \emph{OK Lab Color Space} und meint, 
+dass der Farbraum Ok also gut genug ist und es sich dabei um einen Lab Farbraum handelt.
 
-\paragraph{Helmholtz-Kohlrausch Effekt}
+\paragraph{Ziele von Oklab}
+%hier weiter
 
+\paragraph{Definition von Oklab}
+Eine Farbe in Onlab kann durch drei Werte beschrieben werden, die denen von CIELAB ähneln, 
+aber besser auf die menschliche Wahrnehmung abgestimmt sind.
+Diese drei Werte sind L, a und b. 
+L beschreibt die empfundene Helligkeit, a beschreibt wie grün oder rot die Farbe ist und b beschreibt wie blau oder gelb die Farbe ist.
+Für den Referenzweißwert lehnt sich Oklab an CIELAB und sRGB an und verwendet den D65 Standardweißpunkt.
+Oklab koordinaten lassen sich direkt in die Polarform umwandeln, 
+was die Farbbeschreibung mit den Polarkoordinaten Lightness (Helligkeit), Chroma und Hue (Farbton) ermöglicht.
+Dies ist hilfreich, da so Manipulationen dieser Farbeigenschaften leichter durchgeführt werden können ~\cite{Oklab_2020}.
+Die Formeln für die Umwandelung der Koordinaten sind wie folgt:
+\[C=\sqrt{ a^2 + b^2 }\]
+\[h^\circ = atan2\left( a, b \right)\]
+\[a = C*cos\left( h^\circ \right)\]
+\[b = C*sin\left( h^\circ \right)\]
 
 \subsection{Herleitung von Oklab}
 \subsection{Wie gut ist Oklab?}
+\paragraph{Helmholtz-Kohlrausch Effekt}
+%die vergleiche die er macht + den vergleich am anfang mit hsv
 \subsection{Bessere Sättigungskorrektur mittels Oklab}
 % Von dem anderen Artikel
 \subsection{Oklab in der Praxis}
+%anwendungsbeispiele und implementierungen
 
 \newpage
 % Bibliography
