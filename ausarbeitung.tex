@@ -185,6 +185,10 @@ Auch wenn der L-Zapfen auf Licht im gelb-grünen Bereich am stärksten reagiert,
 ist er am wichtigsten für die Wahrnehmung von Rot und wird daher auch als Rotrezeptor bezeichnet~\cite{Zapfen_Auge_2023}.
 Die Farbwahrnehmung des Menschen entsteht durch das zusammenspiel der drei Zapfen, 
 die, wie in Grafik~\ref{fig:LMS} zu erkennen, durch die Wellenlängen unterschiedlich stark angeregt werden. 
+Dies kann auch dafür sorgen, dass unterschiedliche Lichtspektren als dieselbe Farbe wahrgenommen werden, 
+da sie die unterschiedlichen Zapfen in gleicher Weise erregen. 
+So ist es möglich, dass Displays nur durch die Kombination der drei Grundfarben Rot, Grün und Blau 
+so viele Farben darstellen können ~\cite{Ottosson_2020}.
 
 \begin{figure}
   \centering
@@ -195,9 +199,9 @@ die, wie in Grafik~\ref{fig:LMS} zu erkennen, durch die Wellenlängen unterschie
 
 \paragraph{Farbinterpretation durch das Gehirn}
 Die Signale der Zapfen werden im Hirn verarbeitet und interpretiert. 
-Dabei werden die Farben durch den Mensch in Form unterschiedlicher Farbeigenschaften wahrgenommen.
+Dabei werden die Farben durch den Mensch in Form unterschiedlicher Farbeigenschaften wahrgenommen, 
+die nicht als physikalische Eigenschaften der Farbe definiert werden können~\cite{Ottosson_2020}.
 Zu diesen Farbeigenschaften zählen der Farbton, die Leuchtkraft, die Helligkeit, das Chroma und die Sättigung.
-Die Bedeutung dieser Begriffe wird im später Verlaufe des Artikels noch näher beleuchtet.
 Wichtig ist hier, dass die Wahrnehmung dieser Eigenschaften durch viele psychologische Phenomene beeinflusst wird.
 Die chromatische Anpassung beschreibt zum Beispiel die Fähigkeit der menschlichen Farbwahrnehmung, 
 bei der Betrachtung eines reflektierenden Objekts vom Weißpunkt der beleuchtenden Lichtquelle zu abstrahieren. 
@@ -332,7 +336,27 @@ in Anlehnung an die menschliche Wahrnehmung bietet.
 Außerdem ist IPT sehr simpel Konzipiert und lässt sich sehr einfach aus dem CIEXYZ Farbraum berechnen ~\cite{Ebner_1998}.
 
 \section{Der Oklab Farbraum}
-\subsection{Das Problem mit herkömmlichen Farbräumen}
+Das korrekte Darstellen von Farben durch Software ist heutzutage kein Problem mehr, 
+anders sieht es bei der der Manipulation von Farben aus.
+Am weitesten verbreitet ist heute der sRGB Farbraum, der von vielen Bildformaten unterstützt wird.
+Leider ist sRGB nicht der beste Farbraum für die Farbmanipulation von Bildern.
+Beispielsweise ist sind Farbverläufe in sRGB weder linear noch erscheint er für das menschliche Auge gleichmäßig.
+In der Grafik \ref{fig:vergleich_srgb} ist beispielsweise zu erkennen, wie bei dem Farbverlauf von Grün zu Magenta ein blauer Farbton in der mitte entsteht.
+Dies spiegelt weder die Menschliche wahrnehmen (Perceptual in Grafik \ref{fig:vergleich_srgb}) 
+noch das physikalische Verhalten (Linear in Grafik \ref{fig:vergleich_srgb}) wieder~\cite{Ottosson_2020}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.5\textwidth]{Grafiken/vergleich_srgb.png}
+  \caption{Beispiel drei unterschiedlicher Farbverläufe. Quelle: ~\cite{Ottosson_2020}}
+  \label{fig:vergleich_srgb}
+\end{figure}
+
+\subsection{Farbverarbeitung heute}
+% Weiter mit Chater: Color processing in software today
+% Einleitung mit der Farbwahrnehmung, wie er es macht (erst zusammenfassen!)
+% Ende bei: What about HSV und HSL?
+
 \subsection{Motivation für Oklab}
 \paragraph{Helmholtz-Kohlrausch Effekt}
 \subsection{Herleitung von Oklab}
