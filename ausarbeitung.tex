@@ -338,27 +338,72 @@ Außerdem ist IPT sehr simpel Konzipiert und lässt sich sehr einfach aus dem CI
 \section{Der Oklab Farbraum}
 Das korrekte Darstellen von Farben durch Software ist heutzutage kein Problem mehr, 
 anders sieht es bei der der Manipulation von Farben aus.
-Am weitesten verbreitet ist heute der sRGB Farbraum, der von vielen Bildformaten unterstützt wird.
-Leider ist sRGB nicht der beste Farbraum für die Farbmanipulation von Bildern.
-Beispielsweise ist sind Farbverläufe in sRGB weder linear noch erscheint er für das menschliche Auge gleichmäßig.
-In der Grafik \ref{fig:vergleich_srgb} ist beispielsweise zu erkennen, wie bei dem Farbverlauf von Grün zu Magenta ein blauer Farbton in der mitte entsteht.
-Dies spiegelt weder die Menschliche wahrnehmen (Perceptual in Grafik \ref{fig:vergleich_srgb}) 
-noch das physikalische Verhalten (Linear in Grafik \ref{fig:vergleich_srgb}) wieder~\cite{Ottosson_2020}.
+Typische Farboperationen in Software sind unter anderem das realistische rendern von Bildern, 
+das stilisieren und bearbeiten von Bildern, digitales Malen und das Erstellen von Farbverläufen. 
+Um dies zu ermöglichen können drei unterschiedliche Vorgehensweisen verwendet werden ~\cite{Ottosson_2020}.
+\begin{itemize}
+  \item \textbf{Nacharmen des Verhaltens von echtem Licht und Materialien.} Beispielsweise das hinzufügen von Lens Blur, das Hinzufügen von realistischem Nebel oder Raytracing.
+  \item \textbf{Nacharmen der menschlichen Farbwahrnehmung,} mit dem Ziel eine intuitive und nachvollziehbare Farbmanipulation zu ermöglichen. Zum Beispiel für das Anpassen der des Chroma ohne die Farbe oder Helligkeit zu verändern.
+  \item \textbf{Stilisierte Operationen ohne Realitätsbezug.} 
+\end{itemize}
+
+\subsection{Farbverarbeitung heute}
+Da Farbe sowohl eine physikalische als auch psychologische Komponente hat, könnte man nun denken, 
+dass Farbverarbeitung in Farbräumen auf Basis der physikalischen Interaktion in der echten Welt oder 
+auf Basis der menschlichen Wahrnehmeung erfolgen sollte.
+Beides ist aber meistens nicht der Fall, da die meisten Programme der einfachheit halber den weit verbreiteten sRGB Farbraumsystem verwenden.
+Auch Bildbearbeitungsprogramme wie Photoshop nutzen meistens einfach denselben Farbraum, 
+in dem die Bilder gespeichert werden, um Manipulationen durchzuführen. 
+Zum einen werden so meist Farbräume verwendet, die für die Farbreproduktion entwickelt wurden, 
+statt welche für das durchführen von Berechnungen.
+Zum anderen werden immer die Farbräume verwendet, in denen das Bild gespeichert ist, 
+was zu inkonsistenten Ergebnissen zwischen verschiedenen Bildformaten führen kann.
+Dies sorgt dafür, dass Farbverarbeitung zu einem nebenprodukt der Defonition des Farbraums wird und 
+mit sRGB als verbreiteter Standard ist die definiert danach, wie CRT displays in den 80ern Funktioniert haben.
+Um dieses Problem zu beheben wurden über die Jahre viele Funktionen in den Bildbearbeitungsprogrammen implementiert, 
+diese sollten das Verhalten an die menschliche Wahrnehmung oder das physikalische Verhalten von Licht anpassen. 
+Dennoch wurde der zugrundeliegende Fehler eines nicht zweckdienlichen Farbraumsystems nicht behoben ~\cite{Ottosson_2020}.
+
+Um die Probleme mit der Bildbearbeitung in nicht geeigneten Farbräumen zu visualisieren folgen nun ein paar Beispiele. 
+In diesen Beispielen werden drei verschiedene Farbverläufe dargestellt, 
+der erste basiert auf einem Farbraum der an die menschliche Wahrnehmung angepasst ist, 
+der zweite ist ein linearer Farbraum und veranschaulicht gut die physikalische Mischung von Licht, 
+der dritte ist ein Farbverlauf in sRGB.
+Hier können nun einige unterschiede zwischen den Farbverläufen beobachtet werden.
+\begin{itemize}
+  \item Weder sRGB noch der lineare Farbraum sind in der Lage Farben mit Weiß zu mischen, ohne dass der eindruck eines konstanten Hue aufrechterhalten wird. Besonders gut erkennbar ist dies bei dem blauen Farbverlauf in Grafik \ref{fig:vergleich_white}.
+  \item sRGB dunkelt Farben stark ab, wenn unterschiedliche Farben mit hoher Sättigung gemischt werden. Dies ist besonders gut bei dem Farbverlauf von Grün zu Magenta in Grafik \ref{fig:vergleich_zweifarbig} zu erkennen.
+  \item Sowohl sRGB als auch der wahrnehmungsbasierte Farbraum mischen Schwarz und Weiß sehr ähnlich (siehe Grafik \ref{fig:vergleich_white}), während der lineare Farbraum viel heller erscheint. Dies ist der Grund weshalb sRGB manchmal auch als wahrnehmungsbasierter Farbraum bezeichnet wird, trotz all seiner Probleme.
+\end{itemize}
+In dem Vergleich ist zu erkennen des sRGB weder die menschliche Farbwahrnehmung 
+noch das physikalische Verhalten von Licht korrekt abbildet.
+Daher ist sRGB nicht für die Farbmanipulation von Bildern geeignet ~\cite{Ottosson_2020}.
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.5\textwidth]{Grafiken/vergleich_srgb.png}
-  \caption{Beispiel drei unterschiedlicher Farbverläufe. Quelle: ~\cite{Ottosson_2020}}
-  \label{fig:vergleich_srgb}
+  \includegraphics[width=0.29\textwidth]{Grafiken/Farbverlauf/whiteblue.png}
+  \includegraphics[width=0.29\textwidth]{Grafiken/Farbverlauf/whitegreen.png}
+  \includegraphics[width=0.29\textwidth]{Grafiken/Farbverlauf/whiteblack.png}
+  \caption{Drei Farbverläufe von Weiß zu Blau, Grün und Schwarz. Quelle: ~\cite{Ottosson_2020}}
+  \label{fig:vergleich_white}
 \end{figure}
 
-\subsection{Farbverarbeitung heute}
-% Weiter mit Chater: Color processing in software today
-% Einleitung mit der Farbwahrnehmung, wie er es macht (erst zusammenfassen!)
-% Ende bei: What about HSV und HSL?
+\begin{figure}
+  \centering
+  \includegraphics[width=0.49\textwidth]{Grafiken/Farbverlauf/blueyellow.png}
+  \includegraphics[width=0.49\textwidth]{Grafiken/Farbverlauf/greenmagenta.png}
+  \caption{Zwei Farbverläufe, links von Blau nach Gelb, rechts von Grün nach Magenta. Quelle: ~\cite{Ottosson_2020}}
+  \label{fig:vergleich_zweifarbig}
+\end{figure}
 
 \subsection{Motivation für Oklab}
+Da nun klar ist, dass die häufig verwendeten Farbräume nicht für die Farbmanipulation geeignet sind, 
+muss ein neuer Farbraum entwickelt werden, der diese Aufgabe erfüllt.
+%Ziele oklab
+
 \paragraph{Helmholtz-Kohlrausch Effekt}
+
+
 \subsection{Herleitung von Oklab}
 \subsection{Wie gut ist Oklab?}
 \subsection{Bessere Sättigungskorrektur mittels Oklab}
