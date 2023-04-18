@@ -587,12 +587,80 @@ Ihre Kreise sind am rundensten und am wenigsten verzerrt ~\cite{Oklab_2020}.
   \label{fig:munsell_plots}
 \end{figure}
 
-\paragraph{Luo-Rigg Datensatz und Gamut Analsyse}
-%weiter
 \paragraph{Vergleich Farbverläufe}
+Um nun nochmal auf das einleitende Problem mit den Farbverläufen zurückzukommen, 
+werden in Grafik \ref{fig:blend_comp} nochmal ein Vergleich mit einem weiß-blauen Farbverlauf dargestellt.
+Die Farbverläufe wurden mit denselben Farbräumen generiert, wie bei den Munsell Daten Plotts.
+Auch bei diesen Farbverläufen sind einige Probleme zu erkennen, 
+welche bereits bei dem Vergleich zwischen sRGB, perceptual und linear zu sehen waren.
+Bei den Farbverläufen mit CIELAB und HSV ist eine deutliche Verschiebung des Hues hin zu Lila zu erkennen (Grafik \ref{fig:blend_hsv} und \ref{fig:blend_cielab}) und 
+bei CAM16 scheinen die Farben zu schnell zu entsättigen, was den Übergang weniger gleichmäßig erscheinen lässt (Grafik \ref{fig:blend_cam}). 
+Die übrigen drei Farbräume scheinen einen guten Farbverlauf zu liefern. 
 
-\paragraph{Helmholtz-Kohlrausch Effekt}
-%die vergleiche die er macht + den vergleich am anfang mit hsv
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.3\linewidth}
+    \includegraphics[width=\linewidth]{Grafiken/Vergleich_Farbverlauf/oklab_blend.png}
+    \caption{Oklab}
+    \label{fig:blend_oklab}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.3\linewidth}
+    \includegraphics[width=\linewidth]{Grafiken/Vergleich_Farbverlauf/jzazbz_blend.png}
+    \caption{JzAzBz}
+    \label{fig:blend_jzazbz}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.3\linewidth}
+    \includegraphics[width=\linewidth]{Grafiken/Vergleich_Farbverlauf/ipt_blend.png}
+    \caption{IPT}
+    \label{fig:blend_ipt}
+  \end{subfigure}
+  
+  \begin{subfigure}[b]{0.3\linewidth}
+    \includegraphics[width=\linewidth]{Grafiken/Vergleich_Farbverlauf/hsv_blend.png}
+    \caption{HSV}
+    \label{fig:blend_hsv}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.3\linewidth}
+    \includegraphics[width=\linewidth]{Grafiken/Vergleich_Farbverlauf/cielab_blend.png}
+    \caption{CIELAB}
+    \label{fig:blend_cielab}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.3\linewidth}
+    \includegraphics[width=\linewidth]{Grafiken/Vergleich_Farbverlauf/cam16_blend.png}
+    \caption{CAM16-UCS}
+    \label{fig:blend_cam}
+  \end{subfigure}
+
+  \caption{Blau-weiß Farbveräufe in den unterschiedlichen Farbräumen. Quelle: ~\cite{Oklab_2020}}
+  \label{fig:blend_comp}
+\end{figure}
+
+\paragraph{Fazit}
+Bei den Vergleichen ist zu erkennen, dass Oklab eine gute Alternative zu den anderen Farbräumen ist.
+Oklab ist in der Lage, die wahrgenommene Helligkeit, das Chroma und den Farbton gut vorherzusagen, 
+während es numerisch einfach und leicht zu übernehmen ist ~\cite{Oklab_2020}.
+Besonders gut lassen sich die Vorteile von Oklab erkennen, 
+wenn man einen Farbgradienten mit variierendem Hue, aber konstanter Helligkeit und Chroma erstellt. 
+In Grafik \ref{fig:oklab_hsv} ist ein solcher Farbverlauf dargestellt, der gerade im Vergleich mit HSV eine deutliche konstantere Helligkeit zeigt. 
+Zudem ist Oklab in der Lage wie in Gefik \ref{fig:hsv_lightness} zu erkennen, die gefühlten Helligkeitsunterschiede bei dem HSV Farbverlauf vorherzusagen.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.5\linewidth]{Grafiken/Oklab_HSV/hue_oklab.png}
+  \caption{Farbgradient mit konstanter Helligkeit und Chroma, aber variierendem Hue in Oklab}
+  \label{fig:hue_oklab}
+  
+  \includegraphics[width=0.5\linewidth]{Grafiken/Oklab_HSV/hue_hsv.png}
+  \caption{Farbgradient mit konstanter Helligkeit und Chroma, aber variierendem Hue in HSV}
+  \label{fig:hue_hsv}
+  
+  \includegraphics[width=0.5\linewidth]{Grafiken/Oklab_HSV/hue_hsv_lightness.png}
+  \caption{Wahrgenommene Helligkeit des HSV Farbverlaufs bestimmt durch Oklab}
+  \label{fig:hsv_lightness}
+  
+  \caption{Vergleich von Farbgradienten mit Oklab und HSV Quelle: ~\cite{Oklab_2020}}
+  \label{fig:oklab_hsv}
+\end{figure}
 
 \subsection{Oklab in der Praxis}
 %anwendungsbeispiele und implementierungen
