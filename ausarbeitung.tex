@@ -7,9 +7,9 @@
 \newcommand{\MatrikelNummer}{5722356}
 \newcommand{\Studiengang}{Digitale Bildverarbeitung}
 
-\title{Perceptually Uniform Color Spaces und der Oklab Farbraum}
+\title{Der Oklab Farbraum}
 \author{\Autor}
-\date{22.03.2023}
+\date{20.04.2023}
 
 % SETUP
 \usepackage{biblatex} % für bibliografie
@@ -83,6 +83,52 @@
 }
 
 %Offizele Akronyme
+\DeclareAcronym{sRGB}{
+  short = sRGB,
+  long = Standard-RGB
+}
+\DeclareAcronym{RGB}{
+  short = RGB,
+  long = Rot-Gelb-Blau
+}
+\DeclareAcronym{CRT}{
+  short = CRT,
+  long = Cathode Ray Tube
+}
+\DeclareAcronym{HSV}{
+  short = HSV,
+  long = Hue Saturation Value
+}
+\DeclareAcronym{HSL}{
+  short = HSL,
+  long = Hue Saturation Lightness
+}
+\DeclareAcronym{CIE}{
+  short = CIE,
+  long = Commission Internationale de l'Eclairage
+}
+\DeclareAcronym{Lab}{
+  short = Lab,
+  long = L*a*b*
+}
+\DeclareAcronym{CAM}{
+  short = CAM,
+  long = Color Appearance Model
+}
+\DeclareAcronym{OSA-UCS}{
+  short = OSA-UCS,
+  long = Optical Society of America Unified Color Space
+}
+% Eigentlich nicht richtig!
+\DeclareAcronym{IPT}{
+  short = IPT,
+  long = IPT
+}
+\DeclareAcronym{Oklab}{
+  short = Oklab,
+  long = Ok Lab
+}
+
 
 \newcommand{\reals}{\ensuremath{\mathbb{R}}}
 \newcommand{\natnums}{\ensuremath{\mathbb{N}}}
@@ -192,7 +238,7 @@ die, wie in Grafik~\ref{fig:LMS} zu erkennen, durch die Wellenlängen unterschie
 Dies kann auch dafür sorgen, dass unterschiedliche Lichtspektren als dieselbe Farbe wahrgenommen werden, 
 da sie die unterschiedlichen Zapfen in gleicher Weise erregen. 
 So ist es möglich, dass Displays nur durch die Kombination der drei Grundfarben Rot, Grün und Blau 
-so viele Farben darstellen können ~\cite{Ottosson_2020}.
+so viele Farben darstellen können~\cite{Ottosson_2020}.
 
 \begin{figure}
   \centering
@@ -220,13 +266,13 @@ beispielsweise durch das Mischen der Lichtfarben Rot, Grün und Blau oder durch 
 Farbmodelle werden aus einem solchen Farbsystem abgeleitet und ordnen Farben einen eindeutigen Wert (Farborte) zu.
 Farbmodelle sind häufig dreidimensional, damit sie einfach visualisiert werden können.
 Ein Farbraum wiederum beschreibt alle Farben eines Farbmodells, die durch farbgebende Methoden tatsächlich ausgegeben werden können~\cite{Farbraum_2023}.
-Ein Beispiel ist der sRGB Farbraum, welcher ursprünglich für CRTs entwickelt wurde, aber auch heute noch von vielen Displays verwendet wird~\cite{sRGB-Farbraum_2019}.
+Ein Beispiel ist der \acs{sRGB} Farbraum, welcher ursprünglich für \acs{CRT}s entwickelt wurde, aber auch heute noch von vielen Displays verwendet wird~\cite{sRGB-Farbraum_2019}.
 Die darstellbaren Farben bilden innerhalb des Farbmodells einen Körper, der als Gamut bezeichnet wird.
 
 \subsection{Farbeigenschaften} 
-Abgesehen von den von RGB bekannten Farbdimensionen, welche den Anteil der Grundfarben Rot, Grün und Blau beschreiben, 
+Abgesehen von den von \acs{RGB} bekannten Farbdimensionen, welche den Anteil der Grundfarben Rot, Grün und Blau beschreiben, 
 gibt es noch weitere mögliche Farbdimensionen. Diese Dimensionen nehmen Bezug auf die Farbeigenschaften, nach denen die Farben beschrieben werden können.
-Diese Farbeigenschaften stehen im Bezug zueinander und beeinflussen sich teilweise gegenseitig~\ref{fig:ExColordimension}.
+Diese Farbeigenschaften stehen im Bezug zueinander und beeinflussen sich teilweise gegenseitig.
 
 \paragraph{Farbton}
 Der Farbton (eng. hue) ist eine Eigenschaft der visuellen Wahrnehmung, in welcher eine Fläche 
@@ -235,7 +281,7 @@ aneinanderliegenden Paaren dieser Farben in einem geschlossenen Farbring ähnelt
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.5\textwidth]{Grafiken/Farbring.png}
+  \includegraphics[width=0.3\textwidth]{Grafiken/Farbring.png}
   \caption{Beispiel eines Farbrings. Quelle: \cite{Hue_2023}}
   \label{fig:Hue}
 \end{figure}
@@ -259,12 +305,12 @@ einer ähnlich beleuchteten grauen oder weißen Fläche~\cite{Darktable_2023}.
 \paragraph{Sättigung}
 Die Sättigung (eng. saturation) ist die Farbigkeit einer Fläche im verhältnis zu ihrer Leuchtkraft~\cite{Darktable_2023}.
 
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{Grafiken/KoordinatenFarbeigenschaften.png}
-  \caption{Beispiel für den Zusammenhang zwischen den Farbeigenschaften. Quelle: \cite{Darktable_2023}}
-  \label{fig:ExColordimension}
-\end{figure}
+%\begin{figure}
+%  \centering
+%  \includegraphics[width=\textwidth]{Grafiken/KoordinatenFarbeigenschaften.png}
+%  \caption{Beispiel für den Zusammenhang zwischen den Farbeigenschaften. Quelle: \cite{Darktable_2023}}
+%  \label{fig:ExColordimension}
+%\end{figure}
 
 \subsection{Unterschieliche Farbräume}
 Farben können in vielen unterschiedlichen Farbräumen dargestellt werden. 
@@ -275,34 +321,34 @@ Diese zwei Metriken können zum Beispiel Farbton und Buntheit/Chroma oder komple
 Im Folgenden werden einige Farbräume kurz vorgestellt. Diese Farbräume werden im weiteren Verlauf des Artikels nochmal aufgegriffen.
 
 \paragraph{HSV und HSL}
-HSV steht für Hue, Saturation und Value und HSL für Hue, Saturation und Lightness.
+\acs{HSV} steht für Hue, Saturation und Value und \acs{HSL} für Hue, Saturation und Lightness.
 Beide Farbräume sind alternative Darstellungen des RGB Farbraums. 
 HSL und HSV können beide zylindrische Farbkörper (Abbildung \ref{fig:HSV_HSL}) dargestellt werden, 
 wobei hue den Winkel und Saturation den Radius definieren.
 Die Höhe des Zylinders ist der Wert, der die Helligkeit als Lightness oder Value beschreibt.
-HSV oder HSL werden in Endnutzeranwendungen häufig für Color Picker verwendet ~\cite{HSL_and_HSV_2023}.
+HSV oder HSL werden in Endnutzeranwendungen häufig für Color Picker verwendet~\cite{HSL_and_HSV_2023}.
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.48\textwidth]{Grafiken/HSV_Zylinder.png}
-  \includegraphics[width=0.48\textwidth]{Grafiken/HSL_Zylinder.png}
-  \caption{Beispiel von Farbkörpern für HSV links und HSL rechts. Quelle: ~\cite{HSL_and_HSV_2023}}
+  \includegraphics[width=0.38\textwidth]{Grafiken/HSV_Zylinder.png}
+  \includegraphics[width=0.38\textwidth]{Grafiken/HSL_Zylinder.png}
+  \caption{Beispiel von Farbkörpern für HSV links und HSL rechts. Quelle:~\cite{HSL_and_HSV_2023}}
   \label{fig:HSV_HSL}
 \end{figure}
 
 \paragraph{CIE 1931 XYZ}
-Die CIE-Farbräume von 1931 sind die ersten definierten quantitativen Verbindungen zwischen den Verteilungen 
+Die \acs{CIE}-Farbräume von 1931 sind die ersten definierten quantitativen Verbindungen zwischen den Verteilungen 
 der Wellenlängen im elektromagnetischen sichtbaren Spektrum und den physiologisch wahrgenommenen Farben im menschlichen Farbsehen. 
 Bei CIE XYZ werden die drei Farbkoordinaten X, Y und Z verwendet, um die Farbe zu beschreiben.
 Dabei ist Y die Lumineszenz, Z ist ähnlich zu Blau im RGB Farbraum und X ist eine Mischung der drei CIE RGB Kurven.
 Vorteil ist hier, dass bei einem konstanten Y Wert die XZ Fläche alle Farben dieser Lumineszenz enthält~\cite{CIE_1931_color_space_2023}.
 
 \paragraph{CIELAB}
-Der CIELAB Farbraum wurde 1976 von der CIE entwickelt.
+Der CIE\acs{Lab} Farbraum wurde 1976 von der CIE entwickelt.
 CIELAB hat drei dinemsionen und erstreckt sich über den gesamten Gamut des menschlichen Farbsehens (siehe Grafik \ref{fig:CIELAB}).
 Die drei Farbkoordinaten orientieren sich ebenfalls an der menschlichen Wahrnehmung, 
 wo Rot und Grün, Blau und Gelb, sowie Schwarz und Weiß als Gegenfarben wahrgenommen werden.
-Dies bedeutet, dass die Farben sich ausschließen und es zum Beispiel kein rötliches Grün gibt ~\cite{Becker-Carus_Wendt_2017}.
+Dies bedeutet, dass die Farben sich ausschließen und es zum Beispiel kein rötliches Grün gibt~\cite{Becker-Carus_Wendt_2017}.
 Um dies aufzugreifen werden die Farbkoordinaten L, a und b verwendet.
 Die L-Achse ist die Helligkeit und definiert 0 als Schwarz und 100 als Weiß.
 Die a-Achse ist eine Relative Achse für die Farbtonkomplementarität von Rot und Grün.
@@ -310,19 +356,19 @@ Negative Werte gehen in Richtung Grün, positive Werte in Richtung Rot.
 Die b-Achse ist eine Relative Achse für die Farbtonkomplementarität von Blau und Gelb.
 Negative Werte gehen in Richtung Blau, positive Werte in Richtung Gelb.
 CIELAB wird immer in relation zu einem Referenzweiß definiert, 
-wofür CIE die Nutzung von CIE Standard illuminant D65 empfiehlt ~\cite{CIELAB_color_space_2023}.
+wofür CIE die Nutzung von CIE Standard illuminant D65 empfiehlt~\cite{CIELAB_color_space_2023}.
 
 \begin{figure}
   \centering
   \includegraphics[width=0.29\textwidth]{Grafiken/CIELAB1.png}
   \includegraphics[width=0.29\textwidth]{Grafiken/CIELAB2.png}
   \includegraphics[width=0.29\textwidth]{Grafiken/CIELAB3.png}
-  \caption{a*b* Farbebene des CIELAB Farbraumes bei unterschiedlichen L* Werten. Quelle: ~\cite{CIELAB_color_space_2023}}
+  \caption{a*b* Farbebene des CIELAB Farbraumes bei unterschiedlichen L* Werten. Quelle:~\cite{CIELAB_color_space_2023}}
   \label{fig:CIELAB}
 \end{figure}
 
 \paragraph{CAM16-UCS}
-In der Farbmetrik ist der OSA-UCS (Optical Society of America Uniform Color Space) ein Farbraum, 
+In der Farbmetrik ist der \ac{OSA-UCS} ein Farbraum, 
 der erstmals 1947 veröffentlicht und vom Committee on Uniform Color Scales der Optical Society of America entwickelt wurde.
 Der Ausschuss beschloss, dass eine neue Form verwendet werden muss, 
 um einheitliche Farbunterschiede in jeder Richtung genau darstellen zu können.
@@ -330,25 +376,25 @@ Die drei dimensionen des Farbraumes sind sehr ähnlich zu CIELAB.
 Die L-Achse ist die Helligkeit, die j-Achse ist die Farbtonkomplementarität von Blau und Gelb, 
 wobei positive Werte gelber sind und negative Werte blauer sind.
 Die g-Achse ist die Farbtonkomplementarität von Rot und Grün, 
-wobei positive Werte grüner sind und negative Werte sind pinker ~\cite{OSA-UCS_2023}.
+wobei positive Werte grüner sind und negative Werte sind pinker~\cite{OSA-UCS_2023}.
 
 \paragraph{IPT}
-Der IPT Farbraum ist ein dreidimensionaler Farbraum.
-I steht für die Intensität und P und T ähneln a* und b* von CLAB. 
+Der \acs{IPT} Farbraum ist ein dreidimensionaler Farbraum.
+I steht für die Intensität und P und T ähneln a* und b* von CIELAB. 
 P beschreibt die Rot-Grün Dimension und T beschreibt die Blau-Gelb Dimension.
 Die Vorteile von IPT sind, dass es eine bessere Repräsentation von hue 
 in Anlehnung an die menschliche Wahrnehmung bietet. 
-Außerdem ist IPT sehr simpel Konzipiert und lässt sich sehr einfach aus dem CIEXYZ Farbraum berechnen ~\cite{Ebner_1998}.
+Außerdem ist IPT sehr simpel Konzipiert und lässt sich sehr einfach aus dem CIEXYZ Farbraum berechnen~\cite{Ebner_1998}.
 
 \section{Der Oklab Farbraum}
 Das korrekte Darstellen von Farben durch Software ist heutzutage kein Problem mehr, 
 anders sieht es bei der der Manipulation von Farben aus.
 Typische Farboperationen in Software sind unter anderem das realistische rendern von Bildern, 
 das stilisieren und bearbeiten von Bildern, digitales Malen und das Erstellen von Farbverläufen. 
-Um dies zu ermöglichen können drei unterschiedliche Vorgehensweisen verwendet werden ~\cite{Ottosson_2020}.
+Um dies zu ermöglichen können drei unterschiedliche Vorgehensweisen verwendet werden~\cite{Ottosson_2020}.
 \begin{itemize}
   \item \textbf{Nacharmen des Verhaltens von echtem Licht und Materialien.} Beispielsweise das hinzufügen von Lens Blur, das Hinzufügen von realistischem Nebel oder Raytracing.
-  \item \textbf{Nacharmen der menschlichen Farbwahrnehmung,} mit dem Ziel eine intuitive und nachvollziehbare Farbmanipulation zu ermöglichen. Zum Beispiel für das Anpassen des Chroma ohne die Farbe oder Helligkeit zu verändern, das erstellen einheitlich aussehender Farbverläufe oder das monocromatisieren von Bildern ohne deren empfundene Helligkeit zu verändern ~\cite{Oklab_2020}.
+  \item \textbf{Nacharmen der menschlichen Farbwahrnehmung,} mit dem Ziel eine intuitive und nachvollziehbare Farbmanipulation zu ermöglichen. Zum Beispiel für das Anpassen des Chroma ohne die Farbe oder Helligkeit zu verändern, das erstellen einheitlich aussehender Farbverläufe oder das monocromatisieren von Bildern ohne deren empfundene Helligkeit zu verändern~\cite{Oklab_2020}.
   \item \textbf{Stilisierte Operationen ohne Realitätsbezug.} 
 \end{itemize}
 
@@ -364,10 +410,10 @@ statt welche für das durchführen von Berechnungen.
 Zum anderen werden immer die Farbräume verwendet, in denen das Bild gespeichert ist, 
 was zu inkonsistenten Ergebnissen zwischen verschiedenen Bildformaten führen kann.
 Dies sorgt dafür, dass Farbverarbeitung zu einem nebenprodukt der Defonition des Farbraums wird und 
-mit sRGB als verbreiteter Standard ist die definiert danach, wie CRT displays in den 80ern Funktioniert haben.
+mit sRGB als verbreiteter Standard ist die definiert danach, wie \acs{CRT} displays in den 80ern Funktioniert haben.
 Um dieses Problem zu beheben wurden über die Jahre viele Funktionen in den Bildbearbeitungsprogrammen implementiert, 
 diese sollten das Verhalten an die menschliche Wahrnehmung oder das physikalische Verhalten von Licht anpassen. 
-Dennoch wurde der zugrundeliegende Fehler eines nicht zweckdienlichen Farbraumsystems nicht behoben ~\cite{Ottosson_2020}.
+Dennoch wurde der zugrundeliegende Fehler eines nicht zweckdienlichen Farbraumsystems nicht behoben~\cite{Ottosson_2020}.
 
 Um die Probleme mit der Bildbearbeitung in nicht geeigneten Farbräumen zu visualisieren folgen nun ein paar Beispiele. 
 In diesen Beispielen wird der gleiche Farbverlauf mit der drei unterschiedlichen Farbräumen erzeugt, 
@@ -382,14 +428,14 @@ Hier können nun einige unterschiede zwischen den Farbräumen beobachtet werden.
 \end{itemize}
 In dem Vergleich ist zu erkennen des sRGB weder die menschliche Farbwahrnehmung 
 noch das physikalische Verhalten von Licht korrekt abbildet.
-Daher ist sRGB nicht für die Farbmanipulation von Bildern geeignet ~\cite{Ottosson_2020}.
+Daher ist sRGB nicht für die Farbmanipulation von Bildern geeignet~\cite{Ottosson_2020}.
 
 \begin{figure}
   \centering
   \includegraphics[width=0.29\textwidth]{Grafiken/Farbverlauf/whiteblue.png}
   \includegraphics[width=0.29\textwidth]{Grafiken/Farbverlauf/whitegreen.png}
   \includegraphics[width=0.29\textwidth]{Grafiken/Farbverlauf/whiteblack.png}
-  \caption{Drei Farbverläufe von Weiß zu Blau, Grün und Schwarz. Quelle: ~\cite{Ottosson_2020}}
+  \caption{Drei Farbverläufe von Weiß zu Blau, Grün und Schwarz. Quelle:~\cite{Ottosson_2020}}
   \label{fig:vergleich_white}
 \end{figure}
 
@@ -397,7 +443,7 @@ Daher ist sRGB nicht für die Farbmanipulation von Bildern geeignet ~\cite{Ottos
   \centering
   \includegraphics[width=0.29\textwidth]{Grafiken/Farbverlauf/blueyellow.png}
   \includegraphics[width=0.29\textwidth]{Grafiken/Farbverlauf/greenmagenta.png}
-  \caption{Zwei Farbverläufe, links von Blau nach Gelb, rechts von Grün nach Magenta. Quelle: ~\cite{Ottosson_2020}}
+  \caption{Zwei Farbverläufe, links von Blau nach Gelb, rechts von Grün nach Magenta. Quelle:~\cite{Ottosson_2020}}
   \label{fig:vergleich_zweifarbig}
 \end{figure}
 
@@ -408,15 +454,15 @@ Da nun klar ist, dass die häufig verwendeten Farbräume nicht für die Farbmani
 muss ein neuer Farbraum entwickelt werden, der diese Aufgabe erfüllt.
 Es gibt bereits einige Farbräume, die sich auf die Wahrnehmung von Farben konzentrieren, 
 aber alle haben signifikante Nachteile bei der Nutzung für die Bildbearbeitung.
-Oklab ist ein neuer wahrnehmungsbasierter Farbraum, der 2020 von Björn Ottosson entwickelt wurde und 
+\acs{Oklab} ist ein neuer wahrnehmungsbasierter Farbraum, der 2020 von Björn Ottosson entwickelt wurde und 
 dessen Ziel es ist einfach zu nutzen zu sein und dennoch eine gute Verhersage, 
-der  Wahrnehmung von Helligkeit, Chroma und Farbton zu liefern ~\cite{Oklab_2020}.
+der  Wahrnehmung von Helligkeit, Chroma und Farbton zu liefern~\cite{Oklab_2020}.
 Der Name \glqq Oklab Color Space\grqq~ steht für \emph{OK Lab Color Space} und meint, 
 dass der Farbraum Ok also gut genug ist und es sich dabei um einen Lab Farbraum handelt.
 
 \paragraph{Ziele von Oklab}
 Oklab soll ein wahrnehmungsbasierter Farbraum sein, der sich gut für die Bildbearbeitung eignet.
-Björn Ottosson hat auf Basis seiner Erfarungen folgende Ziele für Oklab definiert ~\cite{Oklab_2020}:
+Björn Ottosson hat auf Basis seiner Erfarungen folgende Ziele für Oklab definiert~\cite{Oklab_2020}:
 \begin{enumerate}
   \item Der Farbraum soll wie CIELAB auf der Gegenfarbentheorie basieren.
   \item Der Farbraum soll Helligkeit, Chroma und Farbton gut vorhersagen. Die Werte sollen als orthogonal wargenommen werden, sodass sie unabhängig voneinander manipuliert werden können.
@@ -436,7 +482,7 @@ L beschreibt die empfundene Helligkeit, a beschreibt wie grün oder rot die Farb
 Für den Referenzweißwert lehnt sich Oklab an CIELAB und sRGB an und verwendet den D65 Standardweißpunkt.
 Oklab koordinaten lassen sich direkt in die Polarform umwandeln, 
 was die Farbbeschreibung mit den Polarkoordinaten Lightness (Helligkeit), Chroma und Hue (Farbton) ermöglicht.
-Dies ist hilfreich, da so Manipulationen dieser Farbeigenschaften leichter durchgeführt werden können ~\cite{Oklab_2020}.
+Dies ist hilfreich, da so Manipulationen dieser Farbeigenschaften leichter durchgeführt werden können~\cite{Oklab_2020}.
 Die Formeln für die Umwandelung der Koordinaten sind wie folgt:
 \begin{equation}
   \begin{aligned}
@@ -462,12 +508,12 @@ Die Formeln für die Umwandelung der Koordinaten sind wie folgt:
 
 \subsection{Herleitung von Oklab}
 Oklab baut auf zwei andere Farbräume auf hat das Ziel, die Vorteile der beiden zu vereinen.
-Der erste Farbraum ist CAM16-UCS, der eine für Menschen sehr einheitlich wargenommen wird.
+Der erste Farbraum ist \acs{CAM}16-UCS, der eine für Menschen sehr einheitlich wargenommen wird.
 Ein Nachteil dieses Farbraums ist, dass er nicht Skaleninvariant ist.
 Der zweite Farbraum ist IPT, der einfach berechenbar und nicht von der Belichtung abhängig ist.
 Ein Nachteil von IPT ist, dass es Helligkeit und Chroma nicht gut vorhersagt.
 Oklab ziehlt nun darauf ab, dieselbe simple Berechnungsstruktur wie IPT zu haben und 
-gleichzeitig eine ähnlich gute Reproduktion von Helligkeit und Chroma wie CAM16-UCS zu ermöglichen ~\cite{Oklab_2020}.
+gleichzeitig eine ähnlich gute Reproduktion von Helligkeit und Chroma wie CAM16-UCS zu ermöglichen~\cite{Oklab_2020}.
 
 Um Oklab herzuleiten werden drei Datensätze verwendet. 
 Der erste Datensatz besteht aus einem Satz an zweier Tupeln von Farben, die jeweils immer die gleiche Helligkeit haben, aber über zufällige Farbton und Chroma Werte verfügen.
@@ -475,7 +521,7 @@ Generiert wurde dieser Datensatz CAM16 und auf den Pointers Gamut reduziert, wel
 Der zweite Datensatz besteht ebenfalls aus einem Satz an zweier Tupeln, die mit CAM16 generiert wurden. 
 Hier ist nun aber das Chroma festgelegt und Farbton und Helligkeit werden zufällig gewählt. Die Farben liegen ebenfalls im Pointers Gamut.
 Der dritte Datensatz basiert auf den Daten, aus denen IPT hergeleitet wurde. Die Daten geben an, welche Farben mit einem gleichen Hue wahrgenommen werden. 
-Aus diesen Daten wurde ein Satz an zweier Tupeln erstellt, wo jedes Tupel den gleichen Hue hat ~\cite{Oklab_2020}.
+Aus diesen Daten wurde ein Satz an zweier Tupeln erstellt, wo jedes Tupel den gleichen Hue hat~\cite{Oklab_2020}.
 Mit diesen Datensätzen lässt sich überprüfen wie gut Farbräume die Wahrnehmung von Helligkeit, Farbwert und Chroma vorhersagen. 
 Wenn der Farbraum die drei Werte korrekt modelliert, sollten die Tupel der einzelnen Datensätze immer denselben Wert für respektive Helligkeit, Farbwert und Chroma haben.
 Um daraus nun eine farbraumunabhängige Fehlermetrik zu erzeugen hat Ottosson folgendes Vorgehen gewählt:
@@ -542,12 +588,12 @@ Diese Vergleiche wurden von Ottosson in seinem Artikel~\cite{Oklab_2020} vorgeno
 Um die korrektheit der Farbvorhersage zu überprüfen werden die Farben mittlerer Helligkeit des Munsell Farbsystems (V=5) 
 in der zugehörigen Ebene der einzelnen Farbräume geplottet. 
 Das Munsell Farbsystem wurde zu beginn des 20. Jahrhunderts von Albert Munsell entwickelt und 
-wird noch heute noch von einigen wahrnehmungsbasierten Farbmodellen wie CIELAB verwendet ~\cite{Munsell_color_system_2022}.
+wird noch heute noch von einigen wahrnehmungsbasierten Farbmodellen wie CIELAB verwendet~\cite{Munsell_color_system_2022}.
 Da das Munsell Farbsystem in Form eines Zylinders aufgebaut ist, 
 sollten bei einer perfekten Übereinstimmung der anderen Modelle mit den Munsell System meherere perfekte Kreise entstehen.
 Je besser die Chroma vorhersage der Farbräume mit den von Munsell definierten Farbezuordnungen übereinstimmt, 
 desto runder und weniger verzerrt sind die Kreise. Bei dem Vergleich der Plotts scheinen Oklab und CAM16-UCS die besten Ergebnisse zu liefern (siehe Grafik \ref{fig:munsell_cam} und \ref{fig:munsell_oklab}). 
-Ihre Kreise sind am rundensten und am wenigsten verzerrt ~\cite{Oklab_2020}.
+Ihre Kreise sind am rundensten und am wenigsten verzerrt~\cite{Oklab_2020}.
 
 \begin{figure}
   \centering
@@ -583,7 +629,7 @@ Ihre Kreise sind am rundensten und am wenigsten verzerrt ~\cite{Oklab_2020}.
     \label{fig:munsell_cam}
   \end{subfigure}
   
-  \caption{Protts der Munsell Farben in den einzelnen Farbräumen. Quelle: ~\cite{Oklab_2020}}
+  \caption{Protts der Munsell Farben in den einzelnen Farbräumen. Quelle:~\cite{Oklab_2020}}
   \label{fig:munsell_plots}
 \end{figure}
 
@@ -631,14 +677,14 @@ Die übrigen drei Farbräume scheinen einen guten Farbverlauf zu liefern.
     \label{fig:blend_cam}
   \end{subfigure}
 
-  \caption{Blau-weiß Farbveräufe in den unterschiedlichen Farbräumen. Quelle: ~\cite{Oklab_2020}}
+  \caption{Blau-weiß Farbveräufe in den unterschiedlichen Farbräumen. Quelle:~\cite{Oklab_2020}}
   \label{fig:blend_comp}
 \end{figure}
 
 \paragraph{Fazit}
 Bei den Vergleichen ist zu erkennen, dass Oklab eine gute Alternative zu den anderen Farbräumen ist.
 Oklab ist in der Lage, die wahrgenommene Helligkeit, das Chroma und den Farbton gut vorherzusagen, 
-während es numerisch einfach und leicht zu übernehmen ist ~\cite{Oklab_2020}.
+während es numerisch einfach und leicht zu übernehmen ist~\cite{Oklab_2020}.
 Besonders gut lassen sich die Vorteile von Oklab erkennen, 
 wenn man einen Farbgradienten mit variierendem Hue, aber konstanter Helligkeit und Chroma erstellt. 
 In Grafik \ref{fig:oklab_hsv} ist ein solcher Farbverlauf dargestellt, der gerade im Vergleich mit HSV eine deutliche konstantere Helligkeit zeigt. 
@@ -646,19 +692,28 @@ Zudem ist Oklab in der Lage wie in Gefik \ref{fig:hsv_lightness} zu erkennen, di
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.5\linewidth]{Grafiken/Oklab_HSV/hue_oklab.png}
+  \begin{subfigure}[b]{\linewidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{Grafiken/Oklab_HSV/hue_oklab.png}
   \caption{Farbgradient mit konstanter Helligkeit und Chroma, aber variierendem Hue in Oklab}
   \label{fig:hue_oklab}
+  \end{subfigure}
   
-  \includegraphics[width=0.5\linewidth]{Grafiken/Oklab_HSV/hue_hsv.png}
+  \begin{subfigure}[b]{\linewidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{Grafiken/Oklab_HSV/hue_hsv.png}
   \caption{Farbgradient mit konstanter Helligkeit und Chroma, aber variierendem Hue in HSV}
   \label{fig:hue_hsv}
+  \end{subfigure}
   
-  \includegraphics[width=0.5\linewidth]{Grafiken/Oklab_HSV/hue_hsv_lightness.png}
+  \begin{subfigure}[b]{\linewidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{Grafiken/Oklab_HSV/hue_hsv_lightness.png}
   \caption{Wahrgenommene Helligkeit des HSV Farbverlaufs bestimmt durch Oklab}
   \label{fig:hsv_lightness}
+  \end{subfigure}
   
-  \caption{Vergleich von Farbgradienten mit Oklab und HSV Quelle: ~\cite{Oklab_2020}}
+  \caption{Vergleich von Farbgradienten mit Oklab und HSV Quelle:~\cite{Oklab_2020}}
   \label{fig:oklab_hsv}
 \end{figure}
 
