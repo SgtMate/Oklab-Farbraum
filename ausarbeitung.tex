@@ -29,6 +29,7 @@
 \usepackage{amsfonts} % für \mathbb
 \usepackage{placeins} % für \FloatBarrier
 \usepackage{nicematrix}
+\usepackage{amsmath}
 %Für den monsterblock
 \usepackage{graphicx}
 \usepackage{subcaption}
@@ -440,8 +441,20 @@ Die Formeln für die Umwandelung der Koordinaten sind wie folgt:
 \begin{equation}
   \begin{aligned}
     C=\sqrt{ a^2 + b^2 }
+  \end{aligned}
+\end{equation}
+\begin{equation}
+  \begin{aligned}
     h^\circ = atan2\left( a, b \right)
+  \end{aligned}
+\end{equation}
+\begin{equation}
+  \begin{aligned}
     a = C*cos\left( h^\circ \right)
+  \end{aligned}
+\end{equation}
+\begin{equation}
+  \begin{aligned}
     b = C*sin\left( h^\circ \right)
   \end{aligned}
 \end{equation}
@@ -478,13 +491,13 @@ Oklab ist nun ein Farbraum, dessen Struktur an IPT angelehnt.
 Zunächst werden die XYZ Koordinaten in die Absorptionsstärken der drei Zapfen umgewandelt:
 \begin{equation}
   \begin{aligned}
-    \begin{MATRIX} l \\ m \\ s \end{MATRIX} = M_1 \times \begin{MATRIX} X \\ Y \\ Z \end{MATRIX}
+    \begin{pmatrix} l \\ m \\ s \end{pmatrix} = M_1 \times \begin{pmatrix} X \\ Y \\ Z \end{pmatrix}
   \end{aligned}
 \end{equation}
 Dann werden die lms-Werte in Lab-Koordinaten umgewandelt:
 \begin{equation}
   \begin{aligned}
-    \begin{MATRIX} L \\ a \\ b \end{MATRIX} = M_2 \times \begin{MATRIX} l^{ \gamma } \\ m^{ \gamma } \\ s^{ \gamma } \end{MATRIX}
+    \begin{pmatrix} L \\ a \\ b \end{pmatrix} = M_2 \times \begin{pmatrix} l^{ \gamma } \\ m^{ \gamma } \\ s^{ \gamma } \end{pmatrix}
   \end{aligned}
 \end{equation}
 Die Parameter \(M_1\), \(M_2\) und \(\gamma\) werden für Oklab so optimiert, 
@@ -499,8 +512,16 @@ Um eine bessere Kompatibilität zu sRGB zu gewährleisten, wird der zuvor ermitt
 So ergeben sich die folgenden Parameter:  
 \begin{equation}
   \begin{aligned}
-    M_1 = \begin{MATRIX} +0.8189330101 & +0.3618667424 & -0.1288597137 \\ +0.0329845436 & +0.9293118715 & +0.0361456387 \\ +0.0482003018 & +0.2643662691 & +0.6338517070 \end{MATRIX}  
-    M_2 = \begin{MATRIX} +0.2104542553 & +0.7936177850 & -0.0040720468 \\ +1.9779984951 & -2.4285922050 & +0.4505937099 \\ +0.0259040371 & +0.7827717662 & -0.8086757660 \end{MATRIX}
+    M_1 = \begin{bmatrix} +0.8189330101 & +0.3618667424 & -0.1288597137 \\ +0.0329845436 & +0.9293118715 & +0.0361456387 \\ +0.0482003018 & +0.2643662691 & +0.6338517070 \end{bmatrix}  
+  \end{aligned}
+\end{equation}
+\begin{equation}
+  \begin{aligned}
+    M_2 = \begin{bmatrix} +0.2104542553 & +0.7936177850 & -0.0040720468 \\ +1.9779984951 & -2.4285922050 & +0.4505937099 \\ +0.0259040371 & +0.7827717662 & -0.8086757660 \end{bmatrix}
+  \end{aligned}
+\end{equation}
+\begin{equation}
+  \begin{aligned}
     \gamma = \frac{ 1 }{ 3 }
   \end{aligned}
 \end{equation}
@@ -509,7 +530,7 @@ So ergeben sich die folgenden Parameter:
 Um Farben von sRGB nach Oklab zu konvertieren, wird einfach die Matrix \(M_1\) durch die folgende ersetzt.
 \begin{equation}
   \begin{aligned}
-    M_1 = \begin{MATRIX} +0.4122214708 & +0.5363325363 & +0.0514459929 \\ +0.2119034982 & +0.6806995451 & +0.1073969566 \\ +0.0883024619 & +0.2817188376 & +0.6299787005 \end{MATRIX}
+    M_1 = \begin{bmatrix} +0.4122214708 & +0.5363325363 & +0.0514459929 \\ +0.2119034982 & +0.6806995451 & +0.1073969566 \\ +0.0883024619 & +0.2817188376 & +0.6299787005 \end{bmatrix}
   \end{aligned}
 \end{equation}
 
@@ -522,18 +543,11 @@ Um die korrektheit der Farbvorhersage zu überprüfen werden die Farben mittlere
 in der zugehörigen Ebene der einzelnen Farbräume geplottet. 
 Das Munsell Farbsystem wurde zu beginn des 20. Jahrhunderts von Albert Munsell entwickelt und 
 wird noch heute noch von einigen wahrnehmungsbasierten Farbmodellen wie CIELAB verwendet ~\cite{Munsell_color_system_2022}.
-Da das Munsell Farbsystem in Form eines Zylinders aufgebaut ist (siehe Grafik \ref{fig:munsel}), 
+Da das Munsell Farbsystem in Form eines Zylinders aufgebaut ist, 
 sollten bei einer perfekten Übereinstimmung der anderen Modelle mit den Munsell System meherere perfekte Kreise entstehen.
 Je besser die Chroma vorhersage der Farbräume mit den von Munsell definierten Farbezuordnungen übereinstimmt, 
 desto runder und weniger verzerrt sind die Kreise. Bei dem Vergleich der Plotts scheinen Oklab und CAM16-UCS die besten Ergebnisse zu liefern (siehe Grafik \ref{fig:munsell_cam} und \ref{fig:munsell_oklab}). 
 Ihre Kreise sind am rundensten und am wenigsten verzerrt ~\cite{Oklab_2020}.
-
-\begin{figure}
-  \centering
-  \includegraphics[width=0.8\textwidth]{Grafiken/Munsell_Farbraum.png}
-  \caption{Visualisierung des Munsell Farbraums. Quelle: ~\cite{Munsell_color_system_2022}}
-  \label{fig:munsel}
-\end{figure}
 
 \begin{figure}
   \centering
