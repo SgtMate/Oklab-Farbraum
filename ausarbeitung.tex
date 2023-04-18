@@ -434,12 +434,82 @@ Oklab koordinaten lassen sich direkt in die Polarform umwandeln,
 was die Farbbeschreibung mit den Polarkoordinaten Lightness (Helligkeit), Chroma und Hue (Farbton) ermöglicht.
 Dies ist hilfreich, da so Manipulationen dieser Farbeigenschaften leichter durchgeführt werden können ~\cite{Oklab_2020}.
 Die Formeln für die Umwandelung der Koordinaten sind wie folgt:
-\[C=\sqrt{ a^2 + b^2 }\]
-\[h^\circ = atan2\left( a, b \right)\]
-\[a = C*cos\left( h^\circ \right)\]
-\[b = C*sin\left( h^\circ \right)\]
+\begin{equation}
+  \begin{aligned}
+    C=\sqrt{ a^2 + b^2 }
+    h^\circ = atan2\left( a, b \right)
+    a = C*cos\left( h^\circ \right)
+    b = C*sin\left( h^\circ \right)
+  \end{aligned}
+\end{equation}
+
 
 \subsection{Herleitung von Oklab}
+Oklab baut auf zwei andere Farbräume auf hat das Ziel, die Vorteile der beiden zu vereinen.
+Der erste Farbraum ist CAM16-UCS, der eine für Menschen sehr einheitlich wargenommen wird.
+Ein Nachteil dieses Farbraums ist, dass er nicht Skaleninvariant ist.
+Der zweite Farbraum ist IPT, der einfach berechenbar und nicht von der Belichtung abhängig ist.
+Ein Nachteil von IPT ist, dass es Helligkeit und Chroma nicht gut vorhersagt.
+Oklab ziehlt nun darauf ab, dieselbe simple Berechnungsstruktur wie IPT zu haben und 
+gleichzeitig eine ähnlich gute Reproduktion von Helligkeit und Chroma wie CAM16-UCS zu ermöglichen ~\cite{Oklab_2020}.
+
+Um Oklab herzuleiten werden drei Datensätze verwendet. 
+Der erste Datensatz besteht aus einem Satz an zweier Tupeln von Farben, die jeweils immer die gleiche Helligkeit haben, aber über zufällige Farbton und Chroma Werte verfügen.
+Generiert wurde dieser Datensatz CAM16 und auf den Pointers Gamut reduziert, welcher alle möglichen Oberflächenfarben enthält.
+Der zweite Datensatz besteht ebenfalls aus einem Satz an zweier Tupeln, die mit CAM16 generiert wurden. 
+Hier ist nun aber das Chroma festgelegt und Farbton und Helligkeit werden zufällig gewählt. Die Farben liegen ebenfalls im Pointers Gamut.
+Der dritte Datensatz basiert auf den Daten, aus denen IPT hergeleitet wurde. Die Daten geben an, welche Farben mit einem gleichen Hue wahrgenommen werden. 
+Aus diesen Daten wurde ein Satz an zweier Tupeln erstellt, wo jedes Tupel den gleichen Hue hat ~\cite{Oklab_2020}.
+Mit diesen Datensätzen lässt sich überprüfen wie gut Farbräume die Wahrnehmung von Helligkeit, Farbwert und Chroma vorhersagen. 
+Wenn der Farbraum die drei Werte korrekt modelliert, sollten die Tupel der einzelnen Datensätze immer denselben Wert für respektive Helligkeit, Farbwert und Chroma haben.
+Um daraus nun eine farbraumunabhängige Fehlermetrik zu erzeugen hat Ottosson folgendes Vorgehen gewählt:
+\begin{enumerate}
+  \item Für jeden Datensatz werden die Tupel in den zu prüfenden Farbraum transformiert.
+  \item Die Koordinaten, die in einem Tupel gleichwertig sein sollen werden dann vertauscht um einen neuen Satz veränderter Tupel zu erhalten. Wenn das Modell korrekt ist, sollten die vertauschten Tupel identisch mit den ursprünglichen Tupeln sein. 
+  \item Die wahrgenommene Distanz zwischen den vertauschten Tupel und den ursprünglichen Tupel wird nun mit CIEDE2000 berechnet. 
+  \item Der Fehler eines Tupels ist nun immer der kleinere Wert der beiden Distanzen, die zuvor berechnet wurden.
+  \item Um den Fehler über den gesamten Datensatz zu berechnen wird anschließend das quadratische Mittel aller Tupel genommen.
+\end{enumerate}
+
+Oklab ist nun ein Farbraum, dessen Struktur an IPT angelehnt.
+Zunächst werden die XYZ Koordinaten in die Absorptionsstärken der drei Zapfen umgewandelt:
+\begin{equation}
+  \begin{aligned}
+    \begin{MATRIX} l \\ m \\ s \end{MATRIX} = M_1 \times \begin{MATRIX} X \\ Y \\ Z \end{MATRIX}
+  \end{aligned}
+\end{equation}
+Dann werden die lms-Werte in Lab-Koordinaten umgewandelt:
+\begin{equation}
+  \begin{aligned}
+    \begin{MATRIX} L \\ a \\ b \end{MATRIX} = M_2 \times \begin{MATRIX} l^{ \gamma } \\ m^{ \gamma } \\ s^{ \gamma } \end{MATRIX}
+  \end{aligned}
+\end{equation}
+Die Parameter \(M_1\), \(M_2\) und \(\gamma\) werden für Oklab so optimiert, 
+dass er eine möglichst geringe Fehlerrate bei allen zuvor definierten Datensätzen aufweist. 
+Bei \(M_1\) und \(M_2\) handelt es sich um 3x3 Matrizen und \(\gamma\) ist eine positive Zahl. 
+Um die Skalierung und Ausrichtung des Farbmodells nicht einzig durch die Minimierung der Fehlerrate bestimmt wird, wurden zusätzlich noch weitere Bedingungen definiert.
+So soll die positive \(b\)-Achse zum selben Gelb wie CAM16 ausgerichtet sein. 
+Außerdem soll der Weißpunkt D65 bei \(L=1\), \(a=0\), \(b=0\) liegen. 
+Zuletzt soll die \(ab\)-Ebene so skaliert sein, dass bei 50\% Grau die Farbdifferenzen entlang der Helligkeitsachse und 
+der \(ab\)-Ebene mit den vorhersagen von CIEDE2000 übereinstimmen. 
+Um eine bessere Kompatibilität zu sRGB zu gewährleisten, wird der zuvor ermittelte \gamma-Wert \(0,323\) zu \(\frac{ 1 }{ 3 }\) geändert. 
+So ergeben sich die folgenden Parameter:  
+\begin{equation}
+  \begin{aligned}
+    M_1 = \begin{MATRIX} +0.8189330101 & +0.3618667424 & -0.1288597137 \\ +0.0329845436 & +0.9293118715 & +0.0361456387 \\ +0.0482003018 & +0.2643662691 & +0.6338517070 \end{MATRIX}  
+    M_2 = \begin{MATRIX} +0.2104542553 & +0.7936177850 & -0.0040720468 \\ +1.9779984951 & -2.4285922050 & +0.4505937099 \\ +0.0259040371 & +0.7827717662 & -0.8086757660 \end{MATRIX}
+    \gamma = \frac{ 1 }{ 3 }
+  \end{aligned}
+\end{equation}
+
+\paragraph{Umrechnung sRGB zu Oklab}
+Um Farben von sRGB nach Oklab zu konvertieren, wird einfach die Matrix \(M_1\) durch die folgende ersetzt.
+\begin{equation}
+  \begin{aligned}
+    M_1 = \begin{MATRIX} +0.4122214708 & +0.5363325363 & +0.0514459929 \\ +0.2119034982 & +0.6806995451 & +0.1073969566 \\ +0.0883024619 & +0.2817188376 & +0.6299787005 \end{MATRIX}
+  \end{aligned}
+\end{equation}
+
 \subsection{Wie gut ist Oklab?}
 \paragraph{Helmholtz-Kohlrausch Effekt}
 %die vergleiche die er macht + den vergleich am anfang mit hsv
