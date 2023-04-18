@@ -29,6 +29,9 @@
 \usepackage{amsfonts} % für \mathbb
 \usepackage{placeins} % für \FloatBarrier
 \usepackage{nicematrix}
+%Für den monsterblock
+\usepackage{graphicx}
+\usepackage{subcaption}
  
 \hypersetup{
   pdfauthor={\Autor},
@@ -511,10 +514,72 @@ Um Farben von sRGB nach Oklab zu konvertieren, wird einfach die Matrix \(M_1\) d
 \end{equation}
 
 \subsection{Wie gut ist Oklab?}
+Um die Vorteile von Oklab zu verdeutlichen werden in diesem Abschnitt einige Vergleiche mit anderen Farbraummodellen vorgestellt.
+Diese Vergleiche wurden von Ottosson in seinem Artikel~\cite{Oklab_2020} vorgenommen.
+
+\paragraph{Munsell-Daten Plott}
+Um die korrektheit der Farbvorhersage zu überprüfen werden die Farben mittlerer Helligkeit des Munsell Farbsystems (V=5) 
+in der zugehörigen Ebene der einzelnen Farbräume geplottet. 
+Das Munsell Farbsystem wurde zu beginn des 20. Jahrhunderts von Albert Munsell entwickelt und 
+wird noch heute noch von einigen wahrnehmungsbasierten Farbmodellen wie CIELAB verwendet ~\cite{Munsell_color_system_2022}.
+Da das Munsell Farbsystem in Form eines Zylinders aufgebaut ist (siehe Grafik \ref{fig:munsel}), 
+sollten bei einer perfekten Übereinstimmung der anderen Modelle mit den Munsell System meherere perfekte Kreise entstehen.
+Je besser die Chroma vorhersage der Farbräume mit den von Munsell definierten Farbezuordnungen übereinstimmt, 
+desto runder und weniger verzerrt sind die Kreise. Bei dem Vergleich der Plotts scheinen Oklab und CAM16-UCS die besten Ergebnisse zu liefern (siehe Grafik \ref{fig:munsell_cam} und \ref{fig:munsell_oklab}). 
+Ihre Kreise sind am rundensten und am wenigsten verzerrt ~\cite{Oklab_2020}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{Grafiken/Munsell_Farbraum.png}
+  \caption{Visualisierung des Munsell Farbraums. Quelle: ~\cite{Munsell_color_system_2022}}
+  \label{fig:munsel}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.3\linewidth}
+    \includegraphics[width=\linewidth]{Grafiken/Vergleich_Munsell/oklab_munsell.png}
+    \caption{Oklab}
+    \label{fig:munsell_oklab}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.3\linewidth}
+    \includegraphics[width=\linewidth]{Grafiken/Vergleich_Munsell/jzazbz_munsell.png}
+    \caption{JzAzBz}
+    \label{fig:munsell_jzazbz}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.3\linewidth}
+    \includegraphics[width=\linewidth]{Grafiken/Vergleich_Munsell/ipt_munsell.png}
+    \caption{IPT}
+    \label{fig:munsell_ipt}
+  \end{subfigure}
+  
+  \begin{subfigure}[b]{0.3\linewidth}
+    \includegraphics[width=\linewidth]{Grafiken/Vergleich_Munsell/hsv_munsell.png}
+    \caption{HSV}
+    \label{fig:munsell_hsv}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.3\linewidth}
+    \includegraphics[width=\linewidth]{Grafiken/Vergleich_Munsell/cielab_munsell.png}
+    \caption{CIELAB}
+    \label{fig:munsell_cielab}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.3\linewidth}
+    \includegraphics[width=\linewidth]{Grafiken/Vergleich_Munsell/cam16_munsell.png}
+    \caption{CAM16-UCS}
+    \label{fig:munsell_cam}
+  \end{subfigure}
+  
+  \caption{Protts der Munsell Farben in den einzelnen Farbräumen. Quelle: ~\cite{Oklab_2020}}
+  \label{fig:munsell_plots}
+\end{figure}
+
+\paragraph{Luo-Rigg Datensatz und Gamut Analsyse}
+%weiter
+\paragraph{Vergleich Farbverläufe}
+
 \paragraph{Helmholtz-Kohlrausch Effekt}
 %die vergleiche die er macht + den vergleich am anfang mit hsv
-\subsection{Bessere Sättigungskorrektur mittels Oklab}
-% Von dem anderen Artikel
+
 \subsection{Oklab in der Praxis}
 %anwendungsbeispiele und implementierungen
 
