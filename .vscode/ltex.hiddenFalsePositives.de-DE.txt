@@ -1,1 +1,0 @@
-{"rule":"GERMAN_SPELLER_RULE","sentence":"^\\QDie Encyclopedia Britannica definiert Farbe sinngemäß als Eigenschaft eines Objektes, die durch dessen Farbton, Helligkeit und Sättigung beschrieben werden kann.\\E$"}
