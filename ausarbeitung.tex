@@ -222,11 +222,11 @@
 %%%%%% 
 
 \section{Farben und Farbräume}
-Was ist Farbe? Das ist eine Frage, die sehr einfach zu Beantworten scheint, da fast jeder Farben sehen kann. 
+Was ist Farbe? Das ist eine Frage, die sehr einfach zu beantworten scheint, da fast jeder Farben sehen kann. 
 Die Encyclopedia Britannica definiert Farbe sinngemäß als Eigenschaft eines Objektes, die durch dessen Farbton, 
-Helligkeit und Sättigung beschrieben werden kann. In der Physik werden Farben mit Elektromagnetischer Strahlung in einem
+Helligkeit und Sättigung beschrieben werden kann. In der Physik werden Farben mit elektromagnetischer Strahlung in einem
 bestimmten Bereich des elektromagnetischen Spektrums beschrieben, der für das menschliche Auge sichtbar ist~\cite{Nassau_2023}.
-Gerade hier liegt ein Problem vor, da Farben sowohl physikalisch erklärt werden können, 
+Gerade hier liegt ein Problem vor, da Farben sowohl physikalisch erklärt werden können 
 aber auch Teil der menschlichen Wahrnehmung sind.
 
 \paragraph{Farbwahrnehmung durch das menschliche Auge}
@@ -269,10 +269,10 @@ All diese Effekte sorgen dafür, das die Farbwahrnehmung des Menschen schwer zu 
 \subsection{Farbräume}
 Ein Farbsystem stellt das Grundprinzip einer Farbmischung dar, 
 beispielsweise durch das Mischen der Lichtfarben Rot, Grün und Blau oder durch das Mischen von Farbpigmenten.
-Farbmodelle werden aus einem solchen Farbsystem abgeleitet und ordnen Farben einen eindeutigen Wert (Farborte) zu.
-Farbmodelle sind häufig dreidimensional, damit sie einfach visualisiert werden können.
+Farbmodelle werden aus einem solchen Farbsystem abgeleitet und ordnen Farben einem eindeutigen Wert (Farborte) zu.
+Farbmodelle sind häufig dreidimensional damit sie einfach visualisiert werden können.
 Ein Farbraum wiederum beschreibt alle Farben eines Farbmodells, die durch farbgebende Methoden tatsächlich ausgegeben werden können~\cite{Farbraum_2023}.
-Ein Beispiel ist der \acs{sRGB} Farbraum, welcher ursprünglich für \acs{CRT}s entwickelt wurde, aber auch heute noch von vielen Displays verwendet wird~\cite{sRGB-Farbraum_2019}.
+Ein Beispiel ist der \acs{sRGB} Farbraum, welcher ursprünglich für \acs{CRT}s entwickelt wurde aber auch heute noch von vielen Displays verwendet wird~\cite{sRGB-Farbraum_2019}.
 Die darstellbaren Farben bilden innerhalb des Farbmodells einen Körper, der als Gamut bezeichnet wird.
 
 \subsection{Farbeigenschaften} 
@@ -329,7 +329,7 @@ Im Folgenden werden einige Farbräume kurz vorgestellt. Diese Farbräume werden 
 \paragraph{HSV und HSL}
 \acs{HSV} steht für Hue, Saturation und Value und \acs{HSL} für Hue, Saturation und Lightness.
 Beide Farbräume sind alternative Darstellungen des RGB Farbraums. 
-HSL und HSV können beide zylindrische Farbkörper (Abbildung \ref{fig:HSV_HSL}) dargestellt werden, 
+HSL und HSV können beide als zylindrische Farbkörper (Abbildung \ref{fig:HSV_HSL}) dargestellt werden, 
 wobei hue den Winkel und Saturation den Radius definieren.
 Die Höhe des Zylinders ist der Wert, der die Helligkeit als Lightness oder Value beschreibt.
 HSV oder HSL werden in Endnutzeranwendungen häufig für Color-Picker verwendet~\cite{HSL_and_HSV_2023}.
@@ -399,8 +399,8 @@ Typische Farboperationen in Software sind unter anderem das realistische rendern
 das stilisieren und bearbeiten von Bildern, digitales Malen und das Erstellen von Farbverläufen. 
 Um dies zu ermöglichen, können drei unterschiedliche Vorgehensweisen verwendet werden~\cite{Ottosson_2020}.
 \begin{itemize}
-  \item \textbf{Nacharmen des Verhaltens von echtem Licht und Materialien.} Beispielsweise das Hinzufügen von Lens-Blur, das Hinzufügen von realistischem Nebel oder Raytracing.
-  \item \textbf{Nacharmen der menschlichen Farbwahrnehmung,} mit dem Ziel eine intuitive und nachvollziehbare Farbmanipulation zu ermöglichen. Zum Beispiel für das Anpassen des Chroma ohne die Farbe oder Helligkeit zu verändern, das Erstellen einheitlich aussehender Farbverläufe oder das monocromatisieren von Bildern ohne deren empfundene Helligkeit zu verändern~\cite{Oklab_2020}.
+  \item \textbf{Nachahmen des Verhaltens von echtem Licht und Materialien.} Beispielsweise das Hinzufügen von Lens-Blur, das Hinzufügen von realistischem Nebel oder Raytracing.
+  \item \textbf{Nachahmen der menschlichen Farbwahrnehmung,} mit dem Ziel eine intuitive und nachvollziehbare Farbmanipulation zu ermöglichen. Zum Beispiel für das Anpassen des Chroma ohne die Farbe oder Helligkeit zu verändern, das Erstellen einheitlich aussehender Farbverläufe oder das monocromatisieren von Bildern ohne deren empfundene Helligkeit zu verändern~\cite{Oklab_2020}.
   \item \textbf{Stilisierte Operationen ohne Realitätsbezug.} 
 \end{itemize}
 
@@ -412,23 +412,23 @@ Beides ist aber meistens nicht der Fall, da die meisten Programme der Einfachhei
 Auch Bildbearbeitungsprogramme wie Photoshop nutzen meistens einfach denselben Farbraum, 
 in dem die Bilder gespeichert werden, um Manipulationen durchzuführen. 
 Zum einen werden so meist Farbräume verwendet, die für die Farbreproduktion entwickelt wurden, 
-statt welche für das Durchführen von Berechnungen.
+statt Farbräume zu verwenden, die für das Durchführen von Berechnungen entwickelt wurden.
 Zum anderen werden immer die Farbräume verwendet, in denen das Bild gespeichert ist, 
 was zu inkonsistenten Ergebnissen zwischen verschiedenen Bildformaten führen kann.
 Dies sorgt dafür, dass Farbverarbeitung zu einem Nebenprodukt der Definition des Farbraums wird und 
-mit sRGB als verbreiteter Standard ist die definiert danach, wie \acs{CRT} Displays in den 80ern funktioniert haben.
-Um dieses Problem zu beheben wurden über die Jahre viele Funktionen in den Bildbearbeitungsprogrammen implementiert, 
+mit sRGB als verbreiteter Standard geschieht dies danach, wie \acs{CRT} Displays in den 80ern funktioniert haben.
+Um dieses Problem zu beheben, wurden über die Jahre viele Funktionen in den Bildbearbeitungsprogrammen implementiert, 
 diese sollten das Verhalten an die menschliche Wahrnehmung oder das physikalische Verhalten von Licht anpassen. 
 Dennoch wurde der zugrundeliegende Fehler eines nicht zweckdienlichen Farbraumsystems nicht behoben~\cite{Ottosson_2020}.
 
 Um die Probleme mit der Bildbearbeitung in nicht geeigneten Farbräumen zu visualisieren, folgen nun ein paar Beispiele. 
-In diesen Beispielen wird der gleiche Farbverlauf mit der drei unterschiedlichen Farbräumen erzeugt, 
+In diesen Beispielen wird der gleiche Farbverlauf mit drei unterschiedlichen Farbräumen erzeugt, 
 der erste basiert auf einem Farbraum der an die menschliche Wahrnehmung angepasst ist, 
 der zweite ist ein linearer Farbraum und veranschaulicht gut die physikalische Mischung von Licht, 
 der dritte ist ein Farbverlauf in sRGB.
 Hier können nun einige Unterschiede zwischen den Farbräumen beobachtet werden.
 \begin{itemize}
-  \item Weder sRGB noch der lineare Farbraum sind in der Lage Farben mit Weiß zu mischen, ohne dass der eindruck eines konstanten Hue aufrechterhalten wird. Besonders gut erkennbar ist dies bei dem blauen Farbverlauf in Grafik \ref{fig:vergleich_white}.
+  \item Weder sRGB noch der lineare Farbraum sind in der Lage Farben mit Weiß zu mischen, ohne dass der Eindruck eines konstanten Hue aufrechterhalten wird. Besonders gut erkennbar ist dies bei dem blauen Farbverlauf in Grafik \ref{fig:vergleich_white}.
   \item sRGB dunkelt Farben stark ab, wenn unterschiedliche Farben mit hoher Sättigung gemischt werden. Dies ist besonders gut bei dem Farbverlauf von Grün zu Magenta in Grafik \ref{fig:vergleich_zweifarbig} zu erkennen.
   \item Sowohl sRGB als auch der wahrnehmungsbasierte Farbraum mischen Schwarz und Weiß sehr ähnlich (siehe Grafik \ref{fig:vergleich_white}), während der lineare Farbraum viel heller erscheint. Dies ist der Grund weshalb sRGB manchmal auch als wahrnehmungsbasierter Farbraum bezeichnet wird, trotz all seiner Probleme.
 \end{itemize}
@@ -458,10 +458,10 @@ Daher ist sRGB nicht für die Farbmanipulation von Bildern geeignet~\cite{Ottoss
 \paragraph{Motivation für Oklab}
 Da nun klar ist, dass die häufig verwendeten Farbräume nicht für die Farbmanipulation geeignet sind, 
 muss ein neuer Farbraum entwickelt werden, der diese Aufgabe erfüllt.
-Es gibt bereits einige Farbräume, die sich auf die Wahrnehmung von Farben konzentrieren, 
+Es gibt bereits einige Farbräume, die sich auf die Wahrnehmung von Farben konzentrieren 
 aber alle haben signifikante Nachteile bei der Nutzung für die Bildbearbeitung.
 \acs{Oklab} ist ein neuer wahrnehmungsbasierter Farbraum, der 2020 von Björn Ottosson entwickelt wurde und 
-dessen Ziel es ist einfach zu nutzen zu sein und dennoch eine gute Vorhersage, 
+dessen Ziel es ist, einfach zu benutzen zu sein und dennoch eine gute Vorhersage 
 der  Wahrnehmung von Helligkeit, Chroma und Farbton zu liefern~\cite{Oklab_2020}.
 Der Name \glqq Oklab Color Space\grqq~ steht für \emph{OK Lab Color Space} und meint, 
 dass der Farbraum Ok also gut genug ist und es sich dabei um einen Lab Farbraum handelt.
@@ -472,16 +472,16 @@ Björn Ottosson hat auf Basis seiner Erfahrungen folgende Ziele für Oklab defin
 \begin{enumerate}
   \item Der Farbraum soll wie CIELAB auf der Gegenfarbentheorie basieren.
   \item Der Farbraum soll Helligkeit, Chroma und Farbton gut vorhersagen. Die Werte sollen als orthogonal wahrgenommen werden, sodass sie unabhängig voneinander manipuliert werden können.
-  \item Das Mischen zweier Farben soll in einem möglichst gleichmäßigen Übergang resultieren. Die Übergangsfarben sollen als mittel zwischen den beiden Farben wahrgenommen werden. 
+  \item Das Mischen zweier Farben soll in einem möglichst gleichmäßigen Übergang resultieren. Die Übergangsfarben sollen als Mittel zwischen den beiden Farben wahrgenommen werden. 
   \item Der Farbraum soll den D65 Standardweißpunkt verwenden. Dieser wird von den meisten Farbräumen verwendet.
   \item Der Farbraum soll sich numerisch gut verhalten. Die bedeutet, dass er einfach zu berechnen und numerisch stabil ist.
   \item Der Farbraum soll gut ausgeleuchtete Sichtverhältnisse annehmen, da die Unterstützung für unterschiedliche Sichtverhältnisse und Beleuchtungen unpraktisch und schwer umzusetzen ist.
-  \item Wenn die Belichtung von Farben geändert wird, sollen die Koordination nur mit einem Faktor skaliert werden. Es wird angenommen, dass die Farben bei normalen Sichtverhältnissen und mit an die Lumineszenz angepassten Augen betrachtet werden.
+  \item Wenn die Belichtung von Farben geändert wird, sollen die Koordinaten nur mit einem Faktor skaliert werden. Es wird angenommen, dass die Farben bei normalen Sichtverhältnissen und mit an die Lumineszenz angepassten Augen betrachtet werden.
 \end{enumerate}
 
 \paragraph{Definition von Oklab}
 Das Resultat der zuvor genannten Ziele ist folgende Definition von Oklab.
-Eine Farbe in Onlab kann durch drei Werte beschrieben werden, die denen von CIELAB ähneln, 
+Eine Farbe in Oklab kann durch drei Werte beschrieben werden, die denen von CIELAB ähneln 
 aber besser auf die menschliche Wahrnehmung abgestimmt sind.
 Diese drei Werte sind L, a und b. 
 L beschreibt die empfundene Helligkeit, a beschreibt wie grün oder rot die Farbe ist und b beschreibt wie blau oder gelb die Farbe ist.
@@ -514,32 +514,32 @@ Die Formeln für die Umwandelung der Koordinaten sind wie folgt:
 
 \subsection{Herleitung von Oklab}
 Oklab baut auf zwei andere Farbräume auf und hat das Ziel, die Vorteile der beiden zu vereinen.
-Der erste Farbraum ist \acs{CAM}16-UCS, der eine für Menschen sehr einheitlich wahrgenommen wird.
+Der erste Farbraum ist \acs{CAM}16-UCS, der von Menschen als sehr einheitlich wahrgenommen wird.
 Ein Nachteil dieses Farbraums ist, dass er nicht Skaleninvariant ist.
 Der zweite Farbraum ist IPT, der einfach berechenbar und nicht von der Belichtung abhängig ist.
 Ein Nachteil von IPT ist, dass es Helligkeit und Chroma nicht gut vorhersagt.
-Oklab zieht nun darauf ab, dieselbe simple Berechnungsstruktur wie IPT zu haben und 
+Oklab zielt nun darauf ab, dieselbe simple Berechnungsstruktur wie IPT zu haben und 
 gleichzeitig eine ähnlich gute Reproduktion von Helligkeit und Chroma wie CAM16-UCS zu ermöglichen~\cite{Oklab_2020}.
 
-Um Oklab herzuleiten werden drei Datensätze verwendet. 
-Der erste Datensatz besteht aus einem Satz an zweier Tupeln von Farben, die jeweils immer die gleiche Helligkeit haben, aber über zufällige Farbton und Chroma Werte verfügen.
-Generiert wurde dieser Datensatz CAM16 und auf den Pointers Gamut reduziert, welcher alle möglichen Oberflächenfarben enthält.
-Der zweite Datensatz besteht ebenfalls aus einem Satz an zweier Tupeln, die mit CAM16 generiert wurden. 
+Um Oklab herzuleiten, werden drei Datensätze verwendet. 
+Der erste Datensatz besteht aus einem Satz an Zweier-Tupeln von Farben, die jeweils immer die gleiche Helligkeit haben aber über zufällige Farbton- und Chroma-Werte verfügen.
+Generiert wurde dieser Datensatz mit CAM16 und es wurden nur Werte innerhalb des Pointers Gamut verwendet, welcher alle möglichen Oberflächenfarben enthält.
+Der zweite Datensatz besteht ebenfalls aus einem Satz an Zweier-Tupeln, die mit CAM16 generiert wurden. 
 Hier ist nun aber das Chroma festgelegt und Farbton und Helligkeit werden zufällig gewählt. Die Farben liegen ebenfalls im Pointers Gamut.
 Der dritte Datensatz basiert auf den Daten, aus denen IPT hergeleitet wurde. Die Daten geben an, welche Farben mit einem gleichen Hue wahrgenommen werden. 
-Aus diesen Daten wurde ein Satz an zweier Tupeln erstellt, wo jedes Tupel den gleichen Hue hat~\cite{Oklab_2020}.
+Aus diesen Daten wurde ein Satz an Zweier-Tupeln erstellt, wo jedes Tupel den gleichen Hue hat~\cite{Oklab_2020}.
 Mit diesen Datensätzen lässt sich überprüfen wie gut Farbräume die Wahrnehmung von Helligkeit, Farbwert und Chroma vorhersagen. 
 Wenn der Farbraum die drei Werte korrekt modelliert, sollten die Tupel der einzelnen Datensätze immer denselben Wert für respektive Helligkeit, Farbwert und Chroma haben.
-Um daraus nun eine farbraumunabhängige Fehlermetrik zu erzeugen hat Ottosson folgendes Vorgehen gewählt:
+Um daraus nun eine farbraumunabhängige Fehlermetrik zu erzeugen, hat Ottosson folgendes Vorgehen gewählt:
 \begin{enumerate}
   \item Für jeden Datensatz werden die Tupel in den zu prüfenden Farbraum transformiert.
-  \item Die Koordinaten, die in einem Tupel gleichwertig sein sollen werden dann vertauscht, um einen neuen Satz veränderter Tupel zu erhalten. Wenn das Modell korrekt ist, sollten die vertauschten Tupel identisch mit den ursprünglichen Tupeln sein. 
+  \item Die Koordinaten die in einem Tupel gleichwertig sein sollen werden dann vertauscht, um einen neuen Satz veränderter Tupel zu erhalten. Wenn das Modell korrekt ist, sollten die vertauschten Tupel identisch mit den ursprünglichen Tupeln sein. 
   \item Die wahrgenommene Distanz zwischen den vertauschten Tupel und den ursprünglichen Tupel wird nun mit CIEDE2000 berechnet. 
   \item Der Fehler eines Tupels ist nun immer der kleinere Wert der beiden Distanzen, die zuvor berechnet wurden.
-  \item Um den Fehler über den gesamten Datensatz zu berechnen wird anschließend das quadratische Mittel aller Tupel genommen.
+  \item Um den Fehler über den gesamten Datensatz zu berechnen, wird anschließend das quadratische Mittel aller Tupel genommen.
 \end{enumerate}
 
-Oklab ist nun ein Farbraum, dessen Struktur an IPT angelehnt.
+Oklab ist nun ein Farbraum, dessen Struktur an IPT angelehnt ist.
 Zunächst werden die XYZ Koordinaten in die Absorptionsstärken der drei Zapfen umgewandelt:
 \begin{equation}
   \begin{aligned}
@@ -558,7 +558,7 @@ Bei \(M_1\) und \(M_2\) handelt es sich um 3x3 Matrizen und \(\gamma\) ist eine 
 Um die Skalierung und Ausrichtung des Farbmodells nicht einzig durch die Minimierung der Fehlerrate bestimmt wird, wurden zusätzlich noch weitere Bedingungen definiert.
 So soll die positive \(b\)-Achse zum selben Gelb wie CAM16 ausgerichtet sein. 
 Außerdem soll der Weißpunkt D65 bei \(L=1\), \(a=0\), \(b=0\) liegen. 
-Zuletzt soll die \(ab\)-Ebene so skaliert sein, dass bei 50\% Grau die Farbdifferenzen entlang der Helligkeitsachse und 
+Zuletzt soll die \(ab\)-Ebene so skaliert sein, dass bei 50\%-Grau die Farbdifferenzen entlang der Helligkeitsachse und 
 der \(ab\)-Ebene mit den vorhersagen von CIEDE2000 übereinstimmen. 
 Um eine bessere Kompatibilität zu sRGB zu gewährleisten, wird der zuvor ermittelte \gamma-Wert \(0,323\) zu \(\frac{ 1 }{ 3 }\) geändert. 
 So ergeben sich die folgenden Parameter:  
@@ -591,15 +591,15 @@ Um die Vorteile von Oklab zu verdeutlichen werden in diesem Abschnitt einige Ver
 Diese Vergleiche wurden von Ottosson in seinem Artikel~\cite{Oklab_2020} vorgenommen.
 
 \paragraph{Munsell-Daten Plott}
-Um die Korrektheit der Farbvorhersage zu überprüfen werden die Farben mittlerer Helligkeit des Munsell Farbsystems (V=5) 
+Um die Korrektheit der Farbvorhersage zu überprüfen, werden die Farben mittlerer Helligkeit des Munsell Farbsystems (V=5) 
 in der zugehörigen Ebene der einzelnen Farbräume geplottet. 
 Das Munsell Farbsystem wurde zu Beginn des 20. Jahrhunderts von Albert Munsell entwickelt und 
-wird noch heute noch von einigen wahrnehmungsbasierten Farbmodellen wie CIELAB verwendet~\cite{Munsell_color_system_2022}.
+wird noch heute von einigen wahrnehmungsbasierten Farbmodellen wie CIELAB verwendet~\cite{Munsell_color_system_2022}.
 Da das Munsell Farbsystem in Form eines Zylinders aufgebaut ist, 
 sollten bei einer perfekten Übereinstimmung der anderen Modelle mit den Munsell System mehrere perfekte Kreise entstehen.
 Je besser die Chroma vorhersage der Farbräume mit den von Munsell definierten Farbzuordnungen übereinstimmt, 
 desto runder und weniger verzerrt sind die Kreise. Bei dem Vergleich der Plotts scheinen Oklab und CAM16-UCS die besten Ergebnisse zu liefern (siehe Grafik \ref{fig:munsell_cam} und \ref{fig:munsell_oklab}). 
-Ihre Kreise am wenigsten verzerrt~\cite{Oklab_2020}.
+Ihre Kreise sind am wenigsten verzerrt~\cite{Oklab_2020}.
 
 \begin{figure}
   \centering
@@ -692,9 +692,9 @@ Bei den Vergleichen ist zu erkennen, dass Oklab eine gute Alternative zu den and
 Oklab ist in der Lage, die wahrgenommene Helligkeit, das Chroma und den Farbton gut vorherzusagen, 
 während es numerisch einfach und leicht zu übernehmen ist~\cite{Oklab_2020}.
 Besonders gut lassen sich die Vorteile von Oklab erkennen, 
-wenn man einen Farbgradienten mit variierendem Hue, aber konstanter Helligkeit und Chroma erstellt. 
+wenn man einen Farbgradienten mit variierendem Hue aber konstanter Helligkeit und Chroma erstellt. 
 In Grafik \ref{fig:oklab_hsv} ist ein solcher Farbverlauf dargestellt, der gerade im Vergleich mit HSV eine deutliche konstantere Helligkeit zeigt. 
-Zudem ist Oklab in der Lage wie in Grafik \ref{fig:hsv_lightness} zu erkennen, die gefühlten Helligkeitsunterschiede bei dem HSV Farbverlauf vorherzusagen.
+Zudem ist Oklab in der Lage, wie in Grafik \ref{fig:hsv_lightness} zu erkennen, die gefühlten Helligkeitsunterschiede bei dem HSV Farbverlauf vorherzusagen.
 
 \begin{figure}
   \centering
